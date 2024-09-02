@@ -1,37 +1,29 @@
 import DetailPage from '@/app/components/DetailPage'
-import { filmEndpoint } from '@/app/endpoints'
+import { planetEndpoint } from '@/app/endpoints'
 import { fetcher } from '@/app/fetchers'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
 
-const FilmDetailPage = () => {
+const PlanetDetailPage = () => {
   const router = useRouter()
   const { id } = router.query
   const skip = ['created', 'edited', 'url']
 
   const {
-    data: film,
+    data: planet,
     isLoading,
     error,
-  } = useSWR(`${filmEndpoint}/${id}`, fetcher)
-
-  if (isLoading) {
-    return <div>Loading...</div>
-  }
-
-  if (error || id === undefined) {
-    return <div>Failed to load</div>
-  }
+  } = useSWR(`${planetEndpoint}/${id}`, fetcher)
 
   return (
     <DetailPage
       id={id as string}
-      resourceType="films"
+      resourceType="planets"
       isLoading={isLoading}
       error={error}
-      data={film}
+      data={planet}
       skip={skip}
     />
   )
 }
-export default FilmDetailPage
+export default PlanetDetailPage

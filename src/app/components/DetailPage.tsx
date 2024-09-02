@@ -2,12 +2,13 @@ import { useAppContext } from '@/app/components/AppContext'
 
 type DetailPageProps = {
   id: string
+  resourceType: string
   skip: string[]
   data: any
   isLoading: boolean
   error: any
 }
-const DetailPage = ({ id, skip, data, isLoading, error }: DetailPageProps) => {
+const DetailPage = ({ id, resourceType, skip, data, isLoading, error }: DetailPageProps) => {
   const resourceMap = useAppContext()
 
   if (isLoading) {
@@ -19,7 +20,7 @@ const DetailPage = ({ id, skip, data, isLoading, error }: DetailPageProps) => {
   }
 
   const keys = Object.keys(data).filter((key) => !skip.includes(key))
-  const image = `https://starwars-visualguide.com/assets/img/films/${id}.jpg`
+  const imageUrl = `https://starwars-visualguide.com/assets/img/${resourceType}/${id}.jpg`
 
   const displayValue = (key: string) => {
     const value = data[key]
@@ -31,7 +32,7 @@ const DetailPage = ({ id, skip, data, isLoading, error }: DetailPageProps) => {
 
   return (
     <div className="detail-container">
-      <img className="detail-image" src={image} alt={data.title ?? data.name} />
+      <img className="detail-image" src={imageUrl} alt={data.title ?? data.name} />
       <div className="detail">
         {keys.map((key) => (
           <div className="detail-row" key={key}>
