@@ -9,6 +9,15 @@ export const filmColumnNames: GridColDef[] = [
 { field: 'vehicles', headerName: 'Vehicles', width: 250 },
 ]
 
+export const vehicleColumnNames: GridColDef[] = [
+    { field: 'name', headerName: 'Name', width: 180 },
+    { field: 'model', headerName: 'Model', width: 180 },
+    { field: 'manufacturer', headerName: 'Manufacturer', width: 180 },
+    { field: 'vehicle_class', headerName: 'Vehicle Class', width: 180 },
+    { field: 'films', headerName: 'Films', width: 350 },
+    { field: 'pilots', headerName: 'Pilots', width: 250 },
+  ]
+
 export const peopleColumnNames: GridColDef[] = [
     { field: 'name', headerName: 'Name', width: 180 },
     { field: 'gender', headerName: 'Gender', width: 120 },

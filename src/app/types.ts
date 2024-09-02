@@ -33,7 +33,26 @@ export interface Person {
   url: string; 
 }
 
-export type Resource = Film | Person; 
+export interface Vehicle {
+  name: string;
+  model: string;
+  manufacturer: string;
+  cost_in_credits: string;
+  length: string;
+  max_atmosphering_speed: string;
+  crew: string;
+  passengers: string;
+  cargo_capacity: string;
+  consumables: string;
+  vehicle_class: string;
+  films: string[];
+  pilots: string[];
+  created: string;
+  edited: string;
+  url: string;
+}
+
+export type Resource = Film | Person | Vehicle; 
 
 export interface ListResponse {
   count: number
