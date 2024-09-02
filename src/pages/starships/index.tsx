@@ -1,20 +1,21 @@
-import DataPage from '@/app/components/DataPage'
+import TablePage from '@/app/components/TablePage'
 import { starshipColumnNames } from '@/app/components/columns'
 import { starshipEndpoint } from '@/app/endpoints'
 import { fetcher } from '@/app/fetchers'
+import { Starship } from '@/app/types'
 
 export const getServerSideProps = async () => {
   const response = await fetcher(starshipEndpoint)
   return {
     props: {
-      intialStarShips: response.results,
+      intialStarships: response.results,
       initialNextPage: response.next,
     },
   }
 }
 
 const transformStarships = (
-  starships: any[],
+  starships: Starship[],
   resourceMap: Map<string, string>,
 ) => {
   return starships.map((starship) => {
@@ -31,16 +32,16 @@ const transformStarships = (
 }
 
 type StarshipProps = {
-  initialStarShips: []
+  intialStarships: []
   initialNextPage: string | null
 }
 
-const StarshipPage = ({ initialStarShips, initialNextPage }: StarshipProps) => {
+const StarshipPage = ({ intialStarships, initialNextPage }: StarshipProps) => {
   return (
-    <DataPage
-      title="Planets"
+    <TablePage
+      title="Starships"
       columns={starshipColumnNames}
-      initialData={initialStarShips}
+      initialData={intialStarships}
       initialNextPage={initialNextPage}
       transformData={transformStarships}
     />

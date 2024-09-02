@@ -2,7 +2,7 @@ import { peopleEndpoint } from '@/app/endpoints'
 import { peopleColumnNames } from '@/app/components/columns'
 import { fetcher } from '@/app/fetchers'
 import { Person } from '@/app/types'
-import DataPage from '@/app/components/DataPage'
+import TablePage from '@/app/components/TablePage'
 
 export const getServerSideProps = async () => {
   const response = await fetcher(peopleEndpoint)
@@ -41,7 +41,7 @@ type PeoplePageProps = {
 }
 const PeoplePage = ({ initialPeople, initialNextPage }: PeoplePageProps) => {
   return (
-    <DataPage
+    <TablePage
       title="Characters"
       columns={peopleColumnNames}
       initialData={initialPeople}

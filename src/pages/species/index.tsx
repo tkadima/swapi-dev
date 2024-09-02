@@ -2,7 +2,7 @@ import { speciesEndpoint } from '@/app/endpoints'
 import { speciesColumnNames } from '@/app/components/columns'
 import { fetcher } from '@/app/fetchers'
 import { Species } from '@/app/types'
-import DataPage from '@/app/components/DataPage'
+import TablePage from '@/app/components/TablePage'
 
 export const getServerSideProps = async () => {
   const response = await fetcher(speciesEndpoint)
@@ -37,7 +37,7 @@ type SpeciesPageProps = {
 }
 const SpeciesPage = ({ initialSpecies, initialNextPage }: SpeciesPageProps) => {
   return (
-    <DataPage
+    <TablePage
       title="Species"
       columns={speciesColumnNames}
       initialData={initialSpecies}

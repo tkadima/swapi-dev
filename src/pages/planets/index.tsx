@@ -1,4 +1,4 @@
-import DataPage from '@/app/components/DataPage'
+import TablePage from '@/app/components/TablePage'
 import { planetEndpoint } from '@/app/endpoints'
 import { planetColumnNames } from '@/app/components/columns'
 import { fetcher } from '@/app/fetchers'
@@ -34,7 +34,7 @@ type PlanetsPageProps = {
 
 const PlanetsPage = ({ initialData, initialNextPage }: PlanetsPageProps) => {
   return (
-    <DataPage
+    <TablePage
       title="Planets"
       columns={planetColumnNames}
       initialData={initialData}

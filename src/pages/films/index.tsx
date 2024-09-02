@@ -1,4 +1,4 @@
-import DataPage from '@/app/components/DataPage'
+import TablePage from '@/app/components/TablePage'
 import { filmEndpoint } from '@/app/endpoints'
 import { filmColumnNames } from '@/app/components/columns'
 import { fetcher } from '@/app/fetchers'
@@ -36,7 +36,7 @@ type FilmsPageProps = {
 
 const FilmsPage = ({ initialData }: FilmsPageProps) => {
   return (
-    <DataPage
+    <TablePage
       title="Films"
       columns={filmColumnNames}
       initialData={initialData}

@@ -4,7 +4,7 @@ import { fetcher } from '@/app/fetchers'
 import TableView from '@/app/components/TableView'
 import { useAppContext } from '@/app/components/AppContext'
 
-type DataPageProps<T> = {
+type TablePageProps<T> = {
   title: string
   columns: any[]
   initialData: T[]
@@ -12,13 +12,13 @@ type DataPageProps<T> = {
   transformData: (data: T[], resourceMap: Map<string, string>) => T[]
 }
 
-const DataPage = <T,>({
+const TablePage = <T,>({
   title,
   columns,
   initialData,
   initialNextPage,
   transformData,
-}: DataPageProps<T>) => {
+}: TablePageProps<T>) => {
   const [data, setData] = useState<T[]>(initialData)
   const [next, setNext] = useState(initialNextPage)
   const { data: nextPageData, error } = useSWR(next, fetcher, {
@@ -53,4 +53,4 @@ const DataPage = <T,>({
   )
 }
 
-export default DataPage
+export default TablePage

@@ -1,4 +1,4 @@
-import DataPage from '@/app/components/DataPage'
+import TablePage from '@/app/components/TablePage'
 import { vehicleColumnNames } from '@/app/components/columns'
 import { vehicleEndpoint } from '@/app/endpoints'
 import { fetcher } from '@/app/fetchers'
@@ -39,7 +39,7 @@ const VehiclesPage = ({
   initialNextPage,
 }: VehiclesPageProps) => {
   return (
-    <DataPage
+    <TablePage
       title="Vehicles"
       columns={vehicleColumnNames}
       initialData={initialVehicles}

@@ -5,6 +5,7 @@ import { ThemeProvider } from '@emotion/react'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import './globals.css'
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter() // use useRouter to get the current route

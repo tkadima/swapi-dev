@@ -2,3 +2,44 @@ body {
   font-family: Arial, sans-serif;
   font-size: 16px;
 }
+
+.detail-image {
+  object-fit: cover;
+  margin-right: 20px;
+  max-height: 300px;
+}
+
+.detail-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding: 20px;
+  /* border: 1px solid #ddd; */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  margin: 20px auto;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.detail-row {
+  display: flex;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.detail-attribute {
+  margin-right: 10px;
+  width: 150px;
+  word-break: break-word;
+}
+
+.detail-value {
+  flex: 1;
+  word-break: break-word;
+}
