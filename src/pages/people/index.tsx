@@ -1,0 +1,69 @@
+import { peopleEndpoint } from '@/app/endpoints'
+import { useCallback, useEffect, useState } from 'react'
+import useSWR from 'swr'
+import { DataGrid } from '@mui/x-data-grid'
+import { columnNames } from '@/app/components/columns'
+import { fetcher } from '@/app/fetchers'
+import { Person } from '@/app/types'
+
+
+
+export const getServerSideProps = async () => {
+  const response = await fetcher(peopleEndpoint)
+  const initialNextPage = response.next
+  const initialPeople = response.results
+  return {
+    props: {
+      initialPeople,
+      initialNextPage,
+    },
+  }
+}
+
+type PeoplePageProps = {
+  initialPeople: []
+  initialNextPage: string | null
+}
+const PeoplePage = ({ initialPeople, initialNextPage }: PeoplePageProps) => {
+  const [people, setPeople] = useState<Person[]>(initialPeople)
+  const [next, setNext] = useState(initialNextPage)
+  const { data, error } = useSWR(next, fetcher, { revalidateOnFocus: false })
+
+  function getRowId(row: any) {
+    return row.name
+  }
+
+  // Optimized handler for fetching the next page
+  const handleFetchNextPage = useCallback(() => {
+    if (data) {
+      setPeople((prevPeople) => [...prevPeople, ...data.results])
+      setNext(data.next)
+    }
+  }, [data])
+
+  useEffect(() => {
+    // Only fetch if there's a next page available
+    if (next && data) {
+      handleFetchNextPage()
+    }
+  }, [next, data, handleFetchNextPage])
+
+  if (error) return <div>failed to load</div>
+
+  return (
+    <main>
+        <h2>Characters</h2>
+      <DataGrid
+        rows={people}
+        getRowId={getRowId}
+        columns={columnNames}
+        initialState={{
+          pagination: { paginationModel: { pageSize: 10 } },
+        }}
+        pageSizeOptions={[10, 25, 50, 100]}
+      />
+    </main>
+  )
+}
+
+export default PeoplePage
