@@ -7,7 +7,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 export default function App({ Component, pageProps }: AppProps) {
-  const router = useRouter(); // use useRouter to get the current route
+  const router = useRouter() // use useRouter to get the current route
 
   return (
     <>
@@ -16,12 +16,11 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
 
       <ThemeProvider theme={theme}>
-        <AppProvider> 
+        <AppProvider>
           <AppNavBar activePage={router.pathname} />
-        <Component {...pageProps} />
+          <Component {...pageProps} />
         </AppProvider>
       </ThemeProvider>
-      
     </>
   )
 }

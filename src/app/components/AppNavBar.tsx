@@ -1,17 +1,18 @@
-import { AppBar, Button, IconButton, Toolbar, Typography } from '@mui/material';
+import { AppBar, Button, IconButton, Toolbar, Typography } from '@mui/material'
 
-import React from 'react';
-import Link from 'next/link';
+import React from 'react'
+import Link from 'next/link'
 
 type AppNavBarProps = {
-  activePage: string;
-};
+  activePage: string
+}
 
 const pages = [
   { name: 'films', path: '/films' },
   { name: 'people', path: '/people' },
   { name: 'vehicles', path: '/vehicles' },
-];
+  { name: 'starships', path: '/starships' },
+]
 // Navigation bar for the application that has links to all the the pages of the app
 const AppNavBar = ({ activePage }: AppNavBarProps) => {
   return (
@@ -39,7 +40,7 @@ const AppNavBar = ({ activePage }: AppNavBarProps) => {
         ))}
       </Toolbar>
     </AppBar>
-  );
-};
+  )
+}
 
-export default AppNavBar;
+export default AppNavBar

@@ -1,44 +1,41 @@
 import { useAppContext } from '@/app/components/AppContext'
 import TableView from '@/app/components/TableView'
-import { vehicleColumnNames } from '@/app/components/columns'
-import { vehicleEndpoint } from '@/app/endpoints'
+import { starshipColumnNames } from '@/app/components/columns'
+import { starshipEndpoint } from '@/app/endpoints'
 import { fetcher } from '@/app/fetchers'
-import { Vehicle } from '@/app/types'
+import { Starship } from '@/app/types'
 import { useCallback, useEffect, useState } from 'react'
 import useSWR from 'swr'
 
 export const getServerSideProps = async () => {
-  const response = await fetcher(vehicleEndpoint)
+  const response = await fetcher(starshipEndpoint)
   return {
     props: {
-      initialVehicles: response.results,
+      intialStarShips: response.results,
       initialNextPage: response.next,
     },
   }
 }
 
-type VehiclesPageProps = {
-  initialVehicles: []
+type StarshipProps = {
+  intialStarShips: []
   initialNextPage: string | null
 }
 
-const VehiclesPage = ({
-  initialVehicles,
-  initialNextPage,
-}: VehiclesPageProps) => {
-  const [vehicles, setVehicles] = useState<Vehicle[]>(initialVehicles)
+const StarshipPage = ({ intialStarShips, initialNextPage }: StarshipProps) => {
+  const [starship, setStarship] = useState<Starship[]>(intialStarShips)
   const [next, setNext] = useState(initialNextPage)
   const { data, error } = useSWR(next, fetcher, { revalidateOnFocus: false })
   const resourceMap = useAppContext()
 
-  const transformVehicles = (vehicles: any[]) => {
-    return vehicles.map((vehicle) => {
+  const transformStarships = (starships: any[]) => {
+    return starships.map((starship) => {
       return {
-        ...vehicle,
-        pilots: vehicle.pilots.map(
+        ...starship,
+        pilots: starship.pilots.map(
           (character: string) => resourceMap.get(character) || character,
         ),
-        films: vehicle.films.map(
+        films: starship.films.map(
           (film: string) => resourceMap.get(film) || film,
         ),
       }
@@ -48,7 +45,7 @@ const VehiclesPage = ({
   // Optimized handler for fetching the next page
   const handleFetchNextPage = useCallback(() => {
     if (data) {
-      setVehicles((prevPeople) => [...prevPeople, ...data.results])
+      setStarship((prevStarships) => [...prevStarships, ...data.results])
       setNext(data.next)
     }
   }, [data])
@@ -65,12 +62,12 @@ const VehiclesPage = ({
   return (
     <main>
       <TableView
-        title="Vehicles"
-        rows={transformVehicles(vehicles)}
-        columns={vehicleColumnNames}
+        title="Starships"
+        rows={transformStarships(starship)}
+        columns={starshipColumnNames}
       />
     </main>
   )
 }
 
-export default VehiclesPage
+export default StarshipPage
