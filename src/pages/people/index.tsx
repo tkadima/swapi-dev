@@ -5,6 +5,7 @@ import { DataGrid } from '@mui/x-data-grid'
 import { columnNames } from '@/app/components/columns'
 import { fetcher } from '@/app/fetchers'
 import { Person } from '@/app/types'
+import { useAppContext } from '@/app/components/AppContext'
 
 
 
@@ -29,8 +30,23 @@ const PeoplePage = ({ initialPeople, initialNextPage }: PeoplePageProps) => {
   const [next, setNext] = useState(initialNextPage)
   const { data, error } = useSWR(next, fetcher, { revalidateOnFocus: false })
 
+  const resourceMap = useAppContext();
+
+
   function getRowId(row: any) {
-    return row.name
+    return row.url.split('/').slice(-2, -1)[0]; 
+  }
+
+  const transFormPeople = (people: Person[]) => {
+    return people.map((person) => {
+        return {
+            ...person,
+            homeworld: resourceMap.get(person.homeworld) || person.homeworld,
+            films: person.films.map((film) => resourceMap.get(film) || film),
+            vehicles: person.vehicles.map((vehicle) => resourceMap.get(vehicle) || vehicle),
+            starships: person.starships.map((starship) => resourceMap.get(starship) || starship),
+        }
+    })
   }
 
   // Optimized handler for fetching the next page
@@ -54,7 +70,7 @@ const PeoplePage = ({ initialPeople, initialNextPage }: PeoplePageProps) => {
     <main>
         <h2>Characters</h2>
       <DataGrid
-        rows={people}
+        rows={transFormPeople(people)}
         getRowId={getRowId}
         columns={columnNames}
         initialState={{

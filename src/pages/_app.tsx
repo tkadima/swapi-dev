@@ -1,3 +1,4 @@
+import { AppProvider } from '@/app/components/AppContext'
 import theme from '@/theme'
 import { ThemeProvider } from '@emotion/react'
 import { AppProps } from 'next/app'
@@ -9,9 +10,13 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <title>Swapi project</title>
       </Head>
+
       <ThemeProvider theme={theme}>
+        <AppProvider> 
         <Component {...pageProps} />
+        </AppProvider>
       </ThemeProvider>
+      
     </>
   )
 }

@@ -1,2 +1,7 @@
 export const apiEndpoint = 'https://swapi.dev/api/'
 export const peopleEndpoint = apiEndpoint + '/people'
+export const filmEndpoint = apiEndpoint + '/films'
+export const planetEndpoint = apiEndpoint + '/planets'
+export const speciesEndpoint = apiEndpoint + '/species'
+export const starshipEndpoint = apiEndpoint + '/starships'
+export const vehicleEndpoint = apiEndpoint + '/vehicles'
