@@ -1,54 +1,48 @@
-import { useAppContext } from '@/app/components/AppContext'
-import TableView from '@/app/components/TableView'
-import { filmColumnNames } from '@/app/components/columns'
+import DataPage from '@/app/components/DataPage'
 import { filmEndpoint } from '@/app/endpoints'
+import { filmColumnNames } from '@/app/components/columns'
 import { fetcher } from '@/app/fetchers'
+import { Film } from '@/app/types'
 
 export const getServerSideProps = async () => {
   const response = await fetcher(filmEndpoint)
   return {
     props: {
-      films: response.results,
+      initialData: response.results,
+      initialNextPage: null,
     },
   }
 }
 
-type FilmsPageProps = {
-  films: []
-  initialNextPage: string | null
+const transformFilms = (films: Film[], resourceMap: Map<string, string>) => {
+  return films.map((film) => ({
+    ...film,
+    characters: film.characters.map(
+      (character) => resourceMap.get(character) || character,
+    ),
+    planets: film.planets.map((planet) => resourceMap.get(planet) || planet),
+    starships: film.starships.map(
+      (starship) => resourceMap.get(starship) || starship,
+    ),
+    vehicles: film.vehicles.map(
+      (vehicle) => resourceMap.get(vehicle) || vehicle,
+    ),
+  }))
 }
 
-const FilmsPage = ({ films }: FilmsPageProps) => {
-  const resourceMap = useAppContext()
+type FilmsPageProps = {
+  initialData: []
+}
 
-  const transformFilms = (films: any[]) => {
-    return films.map((film) => {
-      return {
-        ...film,
-        characters: film.characters.map(
-          (character: string) => resourceMap.get(character) || character,
-        ),
-        planets: film.planets.map(
-          (planet: string) => resourceMap.get(planet) || planet,
-        ),
-        starships: film.starships.map(
-          (starship: string) => resourceMap.get(starship) || starship,
-        ),
-        vehicles: film.vehicles.map(
-          (vehicle: string) => resourceMap.get(vehicle) || vehicle,
-        ),
-      }
-    })
-  }
-
+const FilmsPage = ({ initialData }: FilmsPageProps) => {
   return (
-    <main>
-      <TableView
-        title="Films"
-        rows={transformFilms(films)}
-        columns={filmColumnNames}
-      />
-    </main>
+    <DataPage
+      title="Films"
+      columns={filmColumnNames}
+      initialData={initialData}
+      initialNextPage={null}
+      transformData={transformFilms}
+    />
   )
 }
 
