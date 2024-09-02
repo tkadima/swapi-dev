@@ -1,11 +1,11 @@
 import { peopleEndpoint } from '@/app/endpoints'
 import { useCallback, useEffect, useState } from 'react'
 import useSWR from 'swr'
-import { DataGrid } from '@mui/x-data-grid'
-import { columnNames } from '@/app/components/columns'
+import { peopleColumnNames } from '@/app/components/columns'
 import { fetcher } from '@/app/fetchers'
 import { Person } from '@/app/types'
 import { useAppContext } from '@/app/components/AppContext'
+import TableView from '@/app/components/TableView'
 
 
 
@@ -33,11 +33,7 @@ const PeoplePage = ({ initialPeople, initialNextPage }: PeoplePageProps) => {
   const resourceMap = useAppContext();
 
 
-  function getRowId(row: any) {
-    return row.url.split('/').slice(-2, -1)[0]; 
-  }
-
-  const transFormPeople = (people: Person[]) => {
+  const transformPeople = (people: Person[]) => {
     return people.map((person) => {
         return {
             ...person,
@@ -68,16 +64,7 @@ const PeoplePage = ({ initialPeople, initialNextPage }: PeoplePageProps) => {
 
   return (
     <main>
-        <h2>Characters</h2>
-      <DataGrid
-        rows={transFormPeople(people)}
-        getRowId={getRowId}
-        columns={columnNames}
-        initialState={{
-          pagination: { paginationModel: { pageSize: 10 } },
-        }}
-        pageSizeOptions={[10, 25, 50, 100]}
-      />
+      <TableView title="Characters" rows={transformPeople(people)} columns={peopleColumnNames} />
     </main>
   )
 }
