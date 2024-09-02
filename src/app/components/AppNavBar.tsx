@@ -7,12 +7,8 @@ type AppNavBarProps = {
   activePage: string
 }
 
-const pages = [
-  { name: 'films', path: '/films' },
-  { name: 'people', path: '/people' },
-  { name: 'vehicles', path: '/vehicles' },
-  { name: 'starships', path: '/starships' },
-]
+const pages = ['films', 'people', 'vehicles', 'starships', 'planets', 'species']
+
 // Navigation bar for the application that has links to all the the pages of the app
 const AppNavBar = ({ activePage }: AppNavBarProps) => {
   return (
@@ -30,11 +26,13 @@ const AppNavBar = ({ activePage }: AppNavBarProps) => {
         </IconButton>
 
         {pages.map((page, index) => (
-          <Link key={index} href={page.path} passHref>
+          <Link key={index} href={'/' + page} passHref>
             <Button
-              color={activePage.startsWith(page.path) ? 'secondary' : 'inherit'}
+              color={
+                activePage.startsWith('/' + page) ? 'secondary' : 'inherit'
+              }
             >
-              {page.name}
+              {page}
             </Button>
           </Link>
         ))}

@@ -48,7 +48,7 @@ const VehiclesPage = ({
   // Optimized handler for fetching the next page
   const handleFetchNextPage = useCallback(() => {
     if (data) {
-      setVehicles((prevPeople) => [...prevPeople, ...data.results])
+      setVehicles((prevVehicles) => [...prevVehicles, ...data.results])
       setNext(data.next)
     }
   }, [data])

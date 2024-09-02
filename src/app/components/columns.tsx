@@ -35,3 +35,22 @@ export const starshipColumnNames: GridColDef[] = [
   { field: 'films', headerName: 'Films', width: 350 },
   { field: 'pilots', headerName: 'Pilots', width: 250 },
 ]
+
+export const planetColumnNames: GridColDef[] = [
+  { field: 'name', headerName: 'Name', width: 180 },
+  { field: 'climate', headerName: 'Climate', width: 180 },
+  { field: 'terrain', headerName: 'Terrain', width: 180 },
+  { field: 'population', headerName: 'Population', width: 180 },
+  { field: 'residents', headerName: 'Residents', width: 250 },
+  { field: 'films', headerName: 'Films', width: 350 },
+]
+
+export const speciesColumnNames: GridColDef[] = [
+  { field: 'name', headerName: 'Name', width: 180 },
+  { field: 'classification', headerName: 'Classification', width: 180 },
+  { field: 'designation', headerName: 'Designation', width: 180 },
+  { field: 'language', headerName: 'Language', width: 180 },
+  { field: 'homeworld', headerName: 'Homeworld', width: 180 },
+  { field: 'people', headerName: 'People', width: 250 },
+  { field: 'films', headerName: 'Films', width: 350 },
+]
