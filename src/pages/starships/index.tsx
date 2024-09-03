@@ -1,7 +1,7 @@
 import TablePage from '@/app/components/TablePage'
 import { starshipColumnNames } from '@/app/components/columns'
 import { starshipEndpoint } from '@/app/endpoints'
-import { fetcher, getId, setNameIdPair } from '@/app/fetchers'
+import { fetcher, getId, setNameIdPair } from '@/app/helpers'
 import { Starship } from '@/app/types'
 
 export const getServerSideProps = async () => {

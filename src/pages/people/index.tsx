@@ -1,6 +1,6 @@
 import { peopleEndpoint } from '@/app/endpoints'
 import { peopleColumnNames } from '@/app/components/columns'
-import { fetcher, setNameIdPair } from '@/app/fetchers'
+import { fetcher, setNameIdPair } from '@/app/helpers'
 import { Person } from '@/app/types'
 import TablePage from '@/app/components/TablePage'
 

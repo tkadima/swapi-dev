@@ -1,6 +1,6 @@
 import { speciesEndpoint } from '@/app/endpoints'
 import { speciesColumnNames } from '@/app/components/columns'
-import { fetcher, setNameIdPair } from '@/app/fetchers'
+import { fetcher, setNameIdPair } from '@/app/helpers'
 import { Species } from '@/app/types'
 import TablePage from '@/app/components/TablePage'
 

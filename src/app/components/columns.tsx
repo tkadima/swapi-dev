@@ -1,11 +1,17 @@
 import { GridColDef } from '@mui/x-data-grid'
-import { ListDisplay, ResourceLink } from './TableList'
+import { ListDisplay, ResourceLink } from './ResourceLinks'
+import { formatNumber } from '../helpers'
 
 export const filmColumnNames: GridColDef[] = [
   { field: 'title', headerName: 'Title', width: 180 },
   { field: 'episode_id', headerName: 'Episode ID', width: 120 },
   { field: 'director', headerName: 'Director', width: 180 },
-  { field: 'release_date', headerName: 'Release Date', width: 180 },
+  {
+    field: 'release_date',
+    headerName: 'Release Date',
+    width: 180,
+    renderCell: (params) => new Date(params.value).toLocaleDateString(),
+  },
   {
     field: 'characters',
     headerName: 'Characters',
@@ -103,7 +109,12 @@ export const planetColumnNames: GridColDef[] = [
   { field: 'name', headerName: 'Name', width: 180 },
   { field: 'climate', headerName: 'Climate', width: 180 },
   { field: 'terrain', headerName: 'Terrain', width: 180 },
-  { field: 'population', headerName: 'Population', width: 180 },
+  {
+    field: 'population',
+    headerName: 'Population',
+    width: 180,
+    renderCell: (params) => formatNumber(params.value),
+  },
   {
     field: 'residents',
     headerName: 'Residents',

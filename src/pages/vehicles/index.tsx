@@ -1,7 +1,7 @@
 import TablePage from '@/app/components/TablePage'
 import { vehicleColumnNames } from '@/app/components/columns'
 import { vehicleEndpoint } from '@/app/endpoints'
-import { fetcher, getId, setNameIdPair } from '@/app/fetchers'
+import { fetcher, getId, setNameIdPair } from '@/app/helpers'
 import { Vehicle } from '@/app/types'
 
 export const getServerSideProps = async () => {

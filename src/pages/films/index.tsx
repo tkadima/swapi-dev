@@ -1,7 +1,7 @@
 import TablePage from '@/app/components/TablePage'
 import { filmEndpoint } from '@/app/endpoints'
 import { filmColumnNames } from '@/app/components/columns'
-import { fetcher, setNameIdPair } from '@/app/fetchers'
+import { fetcher, setNameIdPair } from '@/app/helpers'
 import { Film } from '@/app/types'
 
 export const getServerSideProps = async () => {

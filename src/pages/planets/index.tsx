@@ -1,7 +1,7 @@
 import TablePage from '@/app/components/TablePage'
 import { planetEndpoint } from '@/app/endpoints'
 import { planetColumnNames } from '@/app/components/columns'
-import { fetcher, getId, setNameIdPair } from '@/app/fetchers'
+import { fetcher, getId, setNameIdPair } from '@/app/helpers'
 import { Planet } from '@/app/types'
 
 export const getServerSideProps = async () => {

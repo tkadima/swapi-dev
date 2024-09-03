@@ -1,6 +1,6 @@
 import { useAppContext } from '@/app/components/AppContext'
-import { getId } from '../fetchers'
-import { ResourceLink } from './TableList'
+import { getId } from '../helpers'
+import { ResourceLink } from './ResourceLinks'
 
 type DetailPageProps = {
   id: string

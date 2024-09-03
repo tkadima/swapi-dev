@@ -1,6 +1,6 @@
 import DetailPage from '@/app/components/DetailPage'
 import { speciesEndpoint } from '@/app/endpoints'
-import { fetcher } from '@/app/fetchers'
+import { fetcher } from '@/app/helpers'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
 
