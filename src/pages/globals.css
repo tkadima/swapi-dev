@@ -55,3 +55,11 @@ body {
   flex: 1;
   word-break: break-word;
 }
+
+.detail-list-value { 
+  display: grid;
+  grid-template-rows: repeat(5, auto);
+  grid-auto-flow: column;
+  padding: 0;
+  gap: 16px;
+}

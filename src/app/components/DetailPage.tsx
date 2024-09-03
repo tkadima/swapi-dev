@@ -1,6 +1,7 @@
 import { useAppContext } from '@/app/components/AppContext'
 import Link from 'next/link'
 import { fieldNames, getId } from '../fetchers'
+import { Typography } from '@mui/material'
 
 type DetailPageProps = {
   id: string
@@ -35,8 +36,11 @@ const DetailPage = ({
     const value = data[key]
     const keyName = fieldNames[key] || key
     if (Array.isArray(value)) {
-      const arr =  value.map((val) => <Link key={val} href={`/${keyName}/${getId(val)}`}>{resourceMap.get(val) || val}</Link>)
-      return <div>{arr}</div>
+      const arr =  value.map((val) => <Link key={val} href={`/${keyName}/${getId(val)}`}>
+        <Typography component="p" variant="subtitle1">
+          {resourceMap.get(val) || val} </Typography>
+          </Link>)
+      return <div className="detail-list-value">{arr}</div>
     }
     return resourceMap.get(value) || value
   }
