@@ -1,6 +1,6 @@
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
-import router from 'next/router';
-import React, { MouseEvent } from 'react';
+import router from 'next/router'
+import React, { MouseEvent } from 'react'
 
 type TableViewProps = {
   columns: GridColDef[]
@@ -13,16 +13,37 @@ const TableView = ({ title, rows, columns }: TableViewProps) => {
   }
 
   const handleRowClick = (rowData: any, e: MouseEvent<HTMLDivElement>) => {
-    const resource = rowData.row.url.split('/').slice(-3, -1)[0];
-    console.log('clicked row', rowData.row.url.split('/').slice(-3, -1));
+    const target = e.target as HTMLElement;
+    console.log('target', target)
 
-    router.push(`/${resource}/${rowData.id}`);
-  };
+    const resource = rowData.row.url.split('/').slice(-3, -1)[0]
+
+  
+    if (target.tagName === 'P') {
+      // Stop the event propagation and return
+      e.stopPropagation();
+      return;
+    }
+
+    if (target.tagName === 'P') {
+      const anchorTarget = target as HTMLAnchorElement;
+      router.push(anchorTarget.href);
+    }
+    else {
+      router.push(`/${resource}/${rowData.id}`)
+    }
+  }
+
+  const calculateRowHeight = (params: any) => {
+    console.log('params', params)
+    return 300;
+  }
 
   return (
-    <div>
+    <div className="table-view">
       <h2>{title}</h2>
       <DataGrid
+        className="table"
         rows={rows}
         getRowId={getRowId}
         columns={columns}
@@ -31,6 +52,7 @@ const TableView = ({ title, rows, columns }: TableViewProps) => {
         }}
         pageSizeOptions={[10, 25, 50, 100]}
         onRowClick={(row, e: any) => handleRowClick(row, e)}
+        rowHeight={200}
       />
     </div>
   )

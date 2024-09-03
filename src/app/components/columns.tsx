@@ -1,3 +1,4 @@
+import { Box, Link, Typography } from '@mui/material'
 import { GridColDef } from '@mui/x-data-grid'
 
 export const filmColumnNames: GridColDef[] = [
@@ -13,7 +14,22 @@ export const peopleColumnNames: GridColDef[] = [
   { field: 'name', headerName: 'Name', width: 180 },
   { field: 'gender', headerName: 'Gender', width: 120 },
   { field: 'homeworld', headerName: 'Home World', width: 200 },
-  { field: 'films', headerName: 'Films', width: 350 },
+  {
+    field: 'films',
+    headerName: 'Films',
+    width: 350,
+    renderCell: (params) => (
+      <Box sx={{margin: '10px', display: 'flex', flexDirection: 'column'}}>
+        {params.value.map((film: any) => {
+            console.log('film', film); 
+          <Link href={`films/${film.id}`}>
+          <Typography component="p" variant="subtitle1">{film}</Typography>
+          </Link>
+  })}
+      </Box>
+    ),
+  },
+  { field: 'species', headerName: 'Species', width: 250 },
   { field: 'vehicles', headerName: 'Vehicles', width: 250 },
   { field: 'starships', headerName: 'Starships', width: 250 },
 ]

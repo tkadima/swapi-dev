@@ -8,7 +8,14 @@ type DetailPageProps = {
   isLoading: boolean
   error: any
 }
-const DetailPage = ({ id, resourceType, skip, data, isLoading, error }: DetailPageProps) => {
+const DetailPage = ({
+  id,
+  resourceType,
+  skip,
+  data,
+  isLoading,
+  error,
+}: DetailPageProps) => {
   const resourceMap = useAppContext()
 
   if (isLoading) {
@@ -32,7 +39,11 @@ const DetailPage = ({ id, resourceType, skip, data, isLoading, error }: DetailPa
 
   return (
     <div className="detail-container">
-      <img className="detail-image" src={imageUrl} alt={data.title ?? data.name} />
+      <img
+        className="detail-image"
+        src={imageUrl}
+        alt={data.title ?? data.name}
+      />
       <div className="detail">
         {keys.map((key) => (
           <div className="detail-row" key={key}>

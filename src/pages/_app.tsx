@@ -6,6 +6,7 @@ import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import './globals.css'
+import { CssBaseline } from '@mui/material'
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter() // use useRouter to get the current route
@@ -18,6 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
       <ThemeProvider theme={theme}>
         <AppProvider>
+          <CssBaseline />
           <AppNavBar activePage={router.pathname} />
           <Component {...pageProps} />
         </AppProvider>
