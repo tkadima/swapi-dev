@@ -39,13 +39,13 @@ export const ListDisplay = ({ params }: any) => {
           <ResourceLink
             key={val.name + val.id}
             field={params.field}
-            id={val.id}
             name={val.name}
+            id={val.id}
           />
         ))}
 
       {params.value.length > maxVisibleItems && (
-        <Button onClick={handleToggle} size="small">
+        <Button id="show-all-btn" onClick={handleToggle} size="small">
           {showAll ? 'Show Less' : 'View More'}
         </Button>
       )}
