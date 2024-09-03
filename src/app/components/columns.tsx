@@ -50,7 +50,7 @@ export const peopleColumnNames: GridColDef[] = [
   {
     field: 'species',
     headerName: 'Species',
-    width: 250,
+    width: 300,
     renderCell: (params) => <ListDisplay params={params} />,
   },
   {

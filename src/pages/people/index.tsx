@@ -19,13 +19,20 @@ export const getServerSideProps = async () => {
 const transformPeople = (
   people: Person[],
   resourceMap: Map<string, string>,
+  peopleSpeciesMap: Map<string, string>,
 ) => {
+  
   return people.map((person) => {
+    const species = peopleSpeciesMap.get(person.url); 
+    person.species = species ? [species] : person.species;
     return {
       ...person,
       homeworld: setNameIdPair(person.homeworld, resourceMap),
       films: person.films.map((filmUrl: string) =>
         setNameIdPair(filmUrl, resourceMap),
+      ),
+      species: person.species.map((speciesUrl) =>
+        setNameIdPair(speciesUrl, resourceMap),
       ),
       vehicles: person.vehicles.map((vehicleUrl) =>
         setNameIdPair(vehicleUrl, resourceMap),

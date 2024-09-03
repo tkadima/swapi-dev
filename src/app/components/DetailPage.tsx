@@ -18,7 +18,7 @@ const DetailPage = ({
   isLoading,
   error,
 }: DetailPageProps) => {
-  const resourceMap = useAppContext()
+  const {resourceMap} = useAppContext()
 
   if (isLoading) {
     return <div>Loading...</div>

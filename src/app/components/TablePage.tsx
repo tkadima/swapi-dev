@@ -9,7 +9,7 @@ type TablePageProps<T> = {
   columns: any[]
   initialData: T[]
   initialNextPage: string | null
-  transformData: (data: any[], resourceMap: Map<string, string>) => T[]
+  transformData: (data: any[], resourceMap: Map<string, string>, peopleSpeciesMap?: Map<string, string>) => T[]
 }
 
 const TablePage = <T,>({
@@ -25,7 +25,7 @@ const TablePage = <T,>({
     revalidateOnFocus: false,
   })
 
-  const resourceMap = useAppContext()
+  const {resourceMap, peopleSpeciesMap } = useAppContext()
 
   const handleFetchNextPage = useCallback(() => {
     if (nextPageData) {
@@ -46,7 +46,7 @@ const TablePage = <T,>({
     <main>
       <TableView
         title={title}
-        rows={transformData(data, resourceMap)}
+        rows={transformData(data, resourceMap, peopleSpeciesMap)}
         columns={columns}
       />
     </main>

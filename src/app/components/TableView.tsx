@@ -16,7 +16,7 @@ const TableView = ({ title, rows, columns }: TableViewProps) => {
     const target = e.target as HTMLElement
     const resource = rowData.row.url.split('/').slice(-3, -1)[0]
 
-    if (target.id === 'resource-link' || target.id === "show-all-btn") {
+    if (target.id === 'resource-link' || target.id === 'show-all-btn') {
       // Stop the event propagation and return
       e.stopPropagation()
       return

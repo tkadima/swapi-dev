@@ -7,7 +7,7 @@ export const ResourceLink = ({ field, id, name }: any) => {
   const fieldName = fieldNames[field]
   return (
     <Link href={`/${fieldName}/${id}`}>
-      <Typography id="resource-link"  component="p" variant="subtitle1">
+      <Typography id="resource-link" component="p" variant="subtitle1">
         {name}
       </Typography>
     </Link>
