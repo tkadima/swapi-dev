@@ -1,7 +1,7 @@
 import TablePage from '@/app/components/TablePage'
 import { starshipColumnNames } from '@/app/components/columns'
 import { starshipEndpoint } from '@/app/endpoints'
-import { fetcher } from '@/app/fetchers'
+import { fetcher, getId } from '@/app/fetchers'
 import { Starship } from '@/app/types'
 
 export const getServerSideProps = async () => {
@@ -22,10 +22,10 @@ const transformStarships = (
     return {
       ...starship,
       pilots: starship.pilots.map(
-        (character: string) => resourceMap.get(character) || character,
+        (character: string) => ({name: resourceMap.get(character) || character, id: getId(character)}),
       ),
       films: starship.films.map(
-        (film: string) => resourceMap.get(film) || film,
+        (film: string) => ({title: resourceMap.get(film) || film, id: getId(film)}),
       ),
     }
   })

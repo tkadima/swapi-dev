@@ -1,6 +1,6 @@
 import { speciesEndpoint } from '@/app/endpoints'
 import { speciesColumnNames } from '@/app/components/columns'
-import { fetcher } from '@/app/fetchers'
+import { fetcher, getId } from '@/app/fetchers'
 import { Species } from '@/app/types'
 import TablePage from '@/app/components/TablePage'
 
@@ -23,10 +23,10 @@ const transformSpecies = (
   return species.map((specie) => {
     return {
       ...specie,
-      homeworld: resourceMap.get(specie.homeworld) || specie.homeworld,
-      films: specie.films.map((film) => resourceMap.get(film) || film),
-      people: specie.people.map(
-        (personUrl) => resourceMap.get(personUrl) || personUrl,
+      homeworld: specie.homeworld && ({name: resourceMap.get(specie.homeworld) || specie.homeworld, id: getId(specie.homeworld)}),
+      films: specie.films && specie.films.map((film) => ({name: resourceMap.get(film) || film, id: getId(film)})),
+      people: specie.people &&  specie.people.map(
+        (personUrl) => ({id: getId(personUrl), name: resourceMap.get(personUrl) || personUrl}),
       ),
     }
   })

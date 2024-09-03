@@ -13,30 +13,28 @@ const TableView = ({ title, rows, columns }: TableViewProps) => {
   }
 
   const handleRowClick = (rowData: any, e: MouseEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLElement;
+    const target = e.target as HTMLElement
     console.log('target', target)
 
     const resource = rowData.row.url.split('/').slice(-3, -1)[0]
 
-  
     if (target.tagName === 'P') {
       // Stop the event propagation and return
-      e.stopPropagation();
-      return;
+      e.stopPropagation()
+      return
     }
 
     if (target.tagName === 'P') {
-      const anchorTarget = target as HTMLAnchorElement;
-      router.push(anchorTarget.href);
-    }
-    else {
+      const anchorTarget = target as HTMLAnchorElement
+      router.push(anchorTarget.href)
+    } else {
       router.push(`/${resource}/${rowData.id}`)
     }
   }
 
   const calculateRowHeight = (params: any) => {
     console.log('params', params)
-    return 300;
+    return 300
   }
 
   return (

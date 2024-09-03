@@ -16,6 +16,8 @@ export const getServerSideProps = async () => {
   }
 }
 
+const getId = (url: string) => url.split('/').slice(-2, -1)[0]
+
 const transformPeople = (
   people: Person[],
   resourceMap: Map<string, string>,
@@ -24,13 +26,19 @@ const transformPeople = (
     return {
       ...person,
       homeworld: resourceMap.get(person.homeworld) || person.homeworld,
-      films: person.films.map((film) => resourceMap.get(film) || film),
-      vehicles: person.vehicles.map(
-        (vehicle) => resourceMap.get(vehicle) || vehicle,
-      ),
-      starships: person.starships.map(
-        (starship) => resourceMap.get(starship) || starship,
-      ),
+      films: person.films.map((film) => ({
+        id: getId(film),
+        title: resourceMap.get(film) || film,
+      })),
+      vehicles: person.vehicles.map((vehicle) => ({
+        id: getId(vehicle),
+        name: resourceMap.get(vehicle) || vehicle,
+      })),
+      starships: person.starships.map((starshipUrl) => ({
+        id: getId(starshipUrl),
+        name: resourceMap.get(starshipUrl) || starshipUrl,
+        starshipUrl,
+      })),
     }
   })
 }

@@ -9,7 +9,7 @@ type TablePageProps<T> = {
   columns: any[]
   initialData: T[]
   initialNextPage: string | null
-  transformData: (data: T[], resourceMap: Map<string, string>) => T[]
+  transformData: (data: any[], resourceMap: Map<string, string>) => T[]
 }
 
 const TablePage = <T,>({

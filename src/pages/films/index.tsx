@@ -1,7 +1,7 @@
 import TablePage from '@/app/components/TablePage'
 import { filmEndpoint } from '@/app/endpoints'
 import { filmColumnNames } from '@/app/components/columns'
-import { fetcher } from '@/app/fetchers'
+import { fetcher, getId } from '@/app/fetchers'
 import { Film } from '@/app/types'
 
 export const getServerSideProps = async () => {
@@ -18,14 +18,14 @@ const transformFilms = (films: Film[], resourceMap: Map<string, string>) => {
   return films.map((film) => ({
     ...film,
     characters: film.characters.map(
-      (character) => resourceMap.get(character) || character,
+      (character) => ({name: resourceMap.get(character) || character, id: getId(character)}),
     ),
     planets: film.planets.map((planet) => resourceMap.get(planet) || planet),
     starships: film.starships.map(
-      (starship) => resourceMap.get(starship) || starship,
+      (starship) => ({name: resourceMap.get(starship) || starship, id: getId(starship)}),
     ),
     vehicles: film.vehicles.map(
-      (vehicle) => resourceMap.get(vehicle) || vehicle,
+      (vehicle) => ({name: resourceMap.get(vehicle) || vehicle, id: getId(vehicle)})
     ),
   }))
 }
