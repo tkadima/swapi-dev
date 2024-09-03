@@ -14,16 +14,15 @@ const TableView = ({ title, rows, columns }: TableViewProps) => {
 
   const handleRowClick = (rowData: any, e: MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement
-    console.log('target', target); 
     const resource = rowData.row.url.split('/').slice(-3, -1)[0]
 
-    if (target.tagName === 'P', target.id = "show-all-btn") {
+    if (target.id === 'resource-link' || target.id === "show-all-btn") {
       // Stop the event propagation and return
       e.stopPropagation()
       return
     }
 
-    if (target.tagName === 'P') {
+    if (target.id === 'resource-link') {
       const anchorTarget = target as HTMLAnchorElement
       router.push(anchorTarget.href)
     } else {
