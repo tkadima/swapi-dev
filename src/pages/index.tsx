@@ -8,9 +8,9 @@ export async function getServerSideProps() {
       destination: '/films',
       permanent: false,
     },
-  };
+  }
 }
 
 export default function Index() {
-  return null;
+  return null
 }

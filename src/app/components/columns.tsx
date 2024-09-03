@@ -1,37 +1,6 @@
-import { Box, Link, Typography } from '@mui/material'
 import { GridColDef } from '@mui/x-data-grid'
-import { fieldNames } from '../fetchers'
+import { ListDisplay, ResourceLink } from './TableList'
 
-const ResourceLink = ({ field, id, name }: any) => {
-
-  const fieldName = fieldNames[field]
-
-  return (
-    <Link href={`/${fieldName}/${id}`}>
-      <Typography component="p" variant="subtitle1">
-        {name}
-      </Typography>
-    </Link>
-  )
-}
-const ListDisplay = ({ params }: any) => {
-
-  if (params.value === undefined) return <div>Error</div>
-  return (
-    <Box sx={{ margin: '10px', display: 'flex', flexDirection: 'column' }}>
-      {params.value.map((val: any) => {
-        return (
-          <ResourceLink
-            key={val.name + val.id}
-            field={params.field}
-            id={val.id}
-            name={val.name}
-          />
-        )
-      })}
-    </Box>
-  )
-}
 export const filmColumnNames: GridColDef[] = [
   { field: 'title', headerName: 'Title', width: 180 },
   { field: 'episode_id', headerName: 'Episode ID', width: 120 },
@@ -54,7 +23,18 @@ export const filmColumnNames: GridColDef[] = [
 export const peopleColumnNames: GridColDef[] = [
   { field: 'name', headerName: 'Name', width: 180 },
   { field: 'gender', headerName: 'Gender', width: 120 },
-  { field: 'homeworld', headerName: 'Home World', width: 200, renderCell: (params) => <ResourceLink field={params.field} name={params.value.name} id={params.value.id}/>},
+  {
+    field: 'homeworld',
+    headerName: 'Home World',
+    width: 200,
+    renderCell: (params) => (
+      <ResourceLink
+        field={params.field}
+        name={params.value.name}
+        id={params.value.id}
+      />
+    ),
+  },
   {
     field: 'films',
     headerName: 'Films',
@@ -148,11 +128,11 @@ export const speciesColumnNames: GridColDef[] = [
     headerName: 'Homeworld',
     width: 180,
     renderCell: (params) => (
-      <Link href={`planets/${params.value?.id}`}>
-        <Typography component="p" variant="subtitle1">
-          {params?.value?.name }
-        </Typography>
-      </Link>
+      <ResourceLink
+        field={params.field}
+        id={params.value?.id}
+        name={params.value?.name}
+      />
     ),
   },
   {

@@ -21,11 +21,11 @@ const transformStarships = (
   return starships.map((starship) => {
     return {
       ...starship,
-      pilots: starship.pilots.map(
-        (characterUrl: string) => setNameIdPair(characterUrl, resourceMap),
+      pilots: starship.pilots.map((characterUrl: string) =>
+        setNameIdPair(characterUrl, resourceMap),
       ),
-      films: starship.films.map(
-        (filmUrl: string) => setNameIdPair(filmUrl, resourceMap),
+      films: starship.films.map((filmUrl: string) =>
+        setNameIdPair(filmUrl, resourceMap),
       ),
     }
   })

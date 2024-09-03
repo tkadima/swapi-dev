@@ -21,10 +21,12 @@ const transformVehicles = (
   return vehicles.map((vehicle) => {
     return {
       ...vehicle,
-      pilots: vehicle.pilots.map(
-        (characterUrl: string) => setNameIdPair(characterUrl, resourceMap)
+      pilots: vehicle.pilots.map((characterUrl: string) =>
+        setNameIdPair(characterUrl, resourceMap),
       ),
-      films: vehicle.films.map((filmUrl: string) => setNameIdPair(filmUrl, resourceMap)),
+      films: vehicle.films.map((filmUrl: string) =>
+        setNameIdPair(filmUrl, resourceMap),
+      ),
     }
   })
 }

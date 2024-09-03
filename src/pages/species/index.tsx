@@ -16,18 +16,22 @@ export const getServerSideProps = async () => {
   }
 }
 
-const transformSpecies = (
-  species: any[],
-  resourceMap: Map<string, string>,
-) => {
+const transformSpecies = (species: any[], resourceMap: Map<string, string>) => {
   return species.map((specie) => {
     return {
       ...specie,
-      homeworld: specie.homeworld && setNameIdPair(specie.homeworld, resourceMap),
-      films: specie.films && specie.films.map((filmUrl: string) => setNameIdPair(filmUrl, resourceMap)),
-      people: specie.people &&  specie.people.map(
-        (personUrl: string) => setNameIdPair(personUrl, resourceMap),
-      ),
+      homeworld:
+        specie.homeworld && setNameIdPair(specie.homeworld, resourceMap),
+      films:
+        specie.films &&
+        specie.films.map((filmUrl: string) =>
+          setNameIdPair(filmUrl, resourceMap),
+        ),
+      people:
+        specie.people &&
+        specie.people.map((personUrl: string) =>
+          setNameIdPair(personUrl, resourceMap),
+        ),
     }
   })
 }

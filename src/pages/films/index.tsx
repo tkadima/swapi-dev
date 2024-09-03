@@ -17,15 +17,15 @@ export const getServerSideProps = async () => {
 const transformFilms = (films: Film[], resourceMap: Map<string, string>) => {
   return films.map((film) => ({
     ...film,
-    characters: film.characters.map(
-      (characterUrl) => setNameIdPair(characterUrl, resourceMap),
+    characters: film.characters.map((characterUrl) =>
+      setNameIdPair(characterUrl, resourceMap),
     ),
     planets: film.planets.map((planet) => resourceMap.get(planet) || planet),
-    starships: film.starships.map(
-      (starshipUrl) => setNameIdPair(starshipUrl, resourceMap)
+    starships: film.starships.map((starshipUrl) =>
+      setNameIdPair(starshipUrl, resourceMap),
     ),
-    vehicles: film.vehicles.map(
-      (vehicleUrl) => setNameIdPair(vehicleUrl, resourceMap)
+    vehicles: film.vehicles.map((vehicleUrl) =>
+      setNameIdPair(vehicleUrl, resourceMap),
     ),
   }))
 }

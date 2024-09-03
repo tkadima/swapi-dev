@@ -1,7 +1,6 @@
 import { useAppContext } from '@/app/components/AppContext'
-import Link from 'next/link'
-import { fieldNames, getId } from '../fetchers'
-import { Typography } from '@mui/material'
+import { getId } from '../fetchers'
+import { ResourceLink } from './TableList'
 
 type DetailPageProps = {
   id: string
@@ -34,12 +33,15 @@ const DetailPage = ({
 
   const displayValue = (key: string) => {
     const value = data[key]
-    const keyName = fieldNames[key] || key
     if (Array.isArray(value)) {
-      const arr =  value.map((val) => <Link key={val} href={`/${keyName}/${getId(val)}`}>
-        <Typography component="p" variant="subtitle1">
-          {resourceMap.get(val) || val} </Typography>
-          </Link>)
+      const arr = value.map((val) => (
+        <ResourceLink
+          key={val}
+          field={key}
+          id={getId(val)}
+          name={resourceMap.get(val) || val}
+        />
+      ))
       return <div className="detail-list-value">{arr}</div>
     }
     return resourceMap.get(value) || value

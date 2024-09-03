@@ -24,9 +24,9 @@ export interface Person {
   gender: string
   homeworld: string
   films: string[]
-  species: string[] 
+  species: string[]
   vehicles: string[]
-  starships: string[] 
+  starships: string[]
   created: string
   edit: string
   url: string
