@@ -14,7 +14,6 @@ const TableView = ({ title, rows, columns }: TableViewProps) => {
 
   const handleRowClick = (rowData: any, e: MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement
-    console.log('target', target)
 
     const resource = rowData.row.url.split('/').slice(-3, -1)[0]
 
@@ -30,11 +29,6 @@ const TableView = ({ title, rows, columns }: TableViewProps) => {
     } else {
       router.push(`/${resource}/${rowData.id}`)
     }
-  }
-
-  const calculateRowHeight = (params: any) => {
-    console.log('params', params)
-    return 300
   }
 
   return (

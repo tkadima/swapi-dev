@@ -20,7 +20,7 @@ const ListDisplay = ({ params }: any) => {
     <Box sx={{ margin: '10px', display: 'flex', flexDirection: 'column' }}>
       {params.value.map((val: any) => {
         return (
-          <Link href={`/${field}/${val?.id}`}>
+          <Link key={val?.id} href={`/${field}/${val?.id}`}>
             <Typography component="p" variant="subtitle1">
               {val?.title ?? val?.name}
             </Typography>
