@@ -24,7 +24,7 @@ const transformPeople = (
     return {
       ...person,
       homeworld: setNameIdPair(person.homeworld, resourceMap),
-      films: person.films.map((filmUrl) => setNameIdPair(filmUrl, resourceMap)),
+      films: person.films.map((filmUrl: string) => setNameIdPair(filmUrl, resourceMap)),
       vehicles: person.vehicles.map((vehicleUrl) => setNameIdPair(vehicleUrl, resourceMap)),
       starships: person.starships.map((starshipUrl) => setNameIdPair(starshipUrl, resourceMap)),
     }

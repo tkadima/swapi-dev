@@ -1,4 +1,6 @@
 import { useAppContext } from '@/app/components/AppContext'
+import Link from 'next/link'
+import { fieldNames, getId } from '../fetchers'
 
 type DetailPageProps = {
   id: string
@@ -31,8 +33,10 @@ const DetailPage = ({
 
   const displayValue = (key: string) => {
     const value = data[key]
+    const keyName = fieldNames[key] || key
     if (Array.isArray(value)) {
-      return value.map((val) => resourceMap.get(val) || val).join(', ')
+      const arr =  value.map((val) => <Link key={val} href={`/${keyName}/${getId(val)}`}>{resourceMap.get(val) || val}</Link>)
+      return <div>{arr}</div>
     }
     return resourceMap.get(value) || value
   }

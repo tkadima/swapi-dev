@@ -24,11 +24,9 @@ export interface Person {
   gender: string
   homeworld: string
   films: string[]
-  transformedFilms?: { title: string; url: string }[]
-  species: string[]
-  transformedSpecies?: { name: string; url: string }[]
+  species: string[] 
   vehicles: string[]
-  starships: string[]
+  starships: string[] 
   created: string
   edit: string
   url: string
@@ -109,7 +107,7 @@ export interface Species {
   url: string
 }
 
-export type Resource = Film | Person | Vehicle | Starship | Planet
+export type Resource = Film | Person | Vehicle | Starship | Planet | Species
 
 export interface ListResponse {
   count: number

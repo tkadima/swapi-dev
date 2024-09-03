@@ -1,19 +1,9 @@
 import { Box, Link, Typography } from '@mui/material'
 import { GridColDef } from '@mui/x-data-grid'
+import { fieldNames } from '../fetchers'
 
 const ResourceLink = ({ field, id, name }: any) => {
-  const fieldNames: any = {
-    characters: 'people',
-    pilots: 'people',
-    residents: 'people',
-    films: 'films',
-    vehicles: 'vehicles',
-    starships: 'starships',
-    species: 'species',
-    planets: 'planets',
-    people: 'people',
-    homeworld: 'planets',
-  }
+
   const fieldName = fieldNames[field]
 
   return (
@@ -32,7 +22,7 @@ const ListDisplay = ({ params }: any) => {
       {params.value.map((val: any) => {
         return (
           <ResourceLink
-            key={val.id}
+            key={val.name + val.id}
             field={params.field}
             id={val.id}
             name={val.name}
