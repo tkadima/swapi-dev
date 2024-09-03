@@ -1,6 +1,6 @@
 import { peopleEndpoint } from '@/app/endpoints'
 import { peopleColumnNames } from '@/app/components/columns'
-import { fetcher } from '@/app/fetchers'
+import { fetcher, setNameIdPair } from '@/app/fetchers'
 import { Person } from '@/app/types'
 import TablePage from '@/app/components/TablePage'
 
@@ -16,8 +16,6 @@ export const getServerSideProps = async () => {
   }
 }
 
-const getId = (url: string) => url.split('/').slice(-2, -1)[0]
-
 const transformPeople = (
   people: Person[],
   resourceMap: Map<string, string>,
@@ -25,20 +23,10 @@ const transformPeople = (
   return people.map((person) => {
     return {
       ...person,
-      homeworld: resourceMap.get(person.homeworld) || person.homeworld,
-      films: person.films.map((film) => ({
-        id: getId(film),
-        title: resourceMap.get(film) || film,
-      })),
-      vehicles: person.vehicles.map((vehicle) => ({
-        id: getId(vehicle),
-        name: resourceMap.get(vehicle) || vehicle,
-      })),
-      starships: person.starships.map((starshipUrl) => ({
-        id: getId(starshipUrl),
-        name: resourceMap.get(starshipUrl) || starshipUrl,
-        starshipUrl,
-      })),
+      homeworld: setNameIdPair(person.homeworld, resourceMap),
+      films: person.films.map((filmUrl) => setNameIdPair(filmUrl, resourceMap)),
+      vehicles: person.vehicles.map((vehicleUrl) => setNameIdPair(vehicleUrl, resourceMap)),
+      starships: person.starships.map((starshipUrl) => setNameIdPair(starshipUrl, resourceMap)),
     }
   })
 }

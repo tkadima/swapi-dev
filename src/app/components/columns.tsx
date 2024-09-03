@@ -1,7 +1,7 @@
 import { Box, Link, Typography } from '@mui/material'
 import { GridColDef } from '@mui/x-data-grid'
 
-const ListDisplay = ({ params }: any) => {
+const ResourceLink = ({ field, id, name }: any) => {
   const fieldNames: any = {
     characters: 'people',
     pilots: 'people',
@@ -12,19 +12,31 @@ const ListDisplay = ({ params }: any) => {
     species: 'species',
     planets: 'planets',
     people: 'people',
-
+    homeworld: 'planets',
   }
+  const fieldName = fieldNames[field]
+
+  return (
+    <Link href={`/${fieldName}/${id}`}>
+      <Typography component="p" variant="subtitle1">
+        {name}
+      </Typography>
+    </Link>
+  )
+}
+const ListDisplay = ({ params }: any) => {
+
   if (params.value === undefined) return <div>Error</div>
-  const field = fieldNames[params.field]
   return (
     <Box sx={{ margin: '10px', display: 'flex', flexDirection: 'column' }}>
       {params.value.map((val: any) => {
         return (
-          <Link key={val?.id} href={`/${field}/${val?.id}`}>
-            <Typography component="p" variant="subtitle1">
-              {val?.title ?? val?.name}
-            </Typography>
-          </Link>
+          <ResourceLink
+            key={val.id}
+            field={params.field}
+            id={val.id}
+            name={val.name}
+          />
         )
       })}
     </Box>
@@ -52,7 +64,7 @@ export const filmColumnNames: GridColDef[] = [
 export const peopleColumnNames: GridColDef[] = [
   { field: 'name', headerName: 'Name', width: 180 },
   { field: 'gender', headerName: 'Gender', width: 120 },
-  { field: 'homeworld', headerName: 'Home World', width: 200 },
+  { field: 'homeworld', headerName: 'Home World', width: 200, renderCell: (params) => <ResourceLink field={params.field} name={params.value.name} id={params.value.id}/>},
   {
     field: 'films',
     headerName: 'Films',

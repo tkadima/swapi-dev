@@ -1,6 +1,6 @@
 import { speciesEndpoint } from '@/app/endpoints'
 import { speciesColumnNames } from '@/app/components/columns'
-import { fetcher, getId } from '@/app/fetchers'
+import { fetcher, setNameIdPair } from '@/app/fetchers'
 import { Species } from '@/app/types'
 import TablePage from '@/app/components/TablePage'
 
@@ -17,16 +17,16 @@ export const getServerSideProps = async () => {
 }
 
 const transformSpecies = (
-  species: Species[],
+  species: any[],
   resourceMap: Map<string, string>,
 ) => {
   return species.map((specie) => {
     return {
       ...specie,
-      homeworld: specie.homeworld && ({name: resourceMap.get(specie.homeworld) || specie.homeworld, id: getId(specie.homeworld)}),
-      films: specie.films && specie.films.map((film) => ({name: resourceMap.get(film) || film, id: getId(film)})),
+      homeworld: specie.homeworld && setNameIdPair(specie.homeworld, resourceMap),
+      films: specie.films && specie.films.map((filmUrl: string) => setNameIdPair(filmUrl, resourceMap)),
       people: specie.people &&  specie.people.map(
-        (personUrl) => ({id: getId(personUrl), name: resourceMap.get(personUrl) || personUrl}),
+        (personUrl: string) => setNameIdPair(personUrl, resourceMap),
       ),
     }
   })

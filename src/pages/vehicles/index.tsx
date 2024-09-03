@@ -1,7 +1,7 @@
 import TablePage from '@/app/components/TablePage'
 import { vehicleColumnNames } from '@/app/components/columns'
 import { vehicleEndpoint } from '@/app/endpoints'
-import { fetcher, getId } from '@/app/fetchers'
+import { fetcher, getId, setNameIdPair } from '@/app/fetchers'
 import { Vehicle } from '@/app/types'
 
 export const getServerSideProps = async () => {
@@ -22,9 +22,9 @@ const transformVehicles = (
     return {
       ...vehicle,
       pilots: vehicle.pilots.map(
-        (character: string) => ({name: resourceMap.get(character) || character, id: getId(character)}),
+        (characterUrl: string) => setNameIdPair(characterUrl, resourceMap)
       ),
-      films: vehicle.films.map((film: string) => ({ title: resourceMap.get(film) || film, id: getId(film)})),
+      films: vehicle.films.map((filmUrl: string) => setNameIdPair(filmUrl, resourceMap)),
     }
   })
 }
