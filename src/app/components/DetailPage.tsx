@@ -18,7 +18,7 @@ const DetailPage = ({
   isLoading,
   error,
 }: DetailPageProps) => {
-  const {resourceMap} = useAppContext()
+  const { resourceMap, peopleSpeciesMap } = useAppContext()
 
   if (isLoading) {
     return <div>Loading...</div>
@@ -33,6 +33,17 @@ const DetailPage = ({
 
   const displayValue = (key: string) => {
     const value = data[key]
+    if (key === 'species' && resourceType === 'people' && value.length > 0) {
+      const species = peopleSpeciesMap.get(data.url)
+       return (
+        species &&
+        <ResourceLink
+          field={key}
+          id={getId(species)}
+          name={resourceMap.get(species) || species}
+        />
+      )
+    }
     if (Array.isArray(value)) {
       const arr = value.map((val) => (
         <ResourceLink
@@ -44,7 +55,7 @@ const DetailPage = ({
       ))
       return <div className="detail-list-value">{arr}</div>
     }
-    return resourceMap.get(value) || value
+    else return resourceMap.get(value) || value
   }
 
   return (
@@ -56,12 +67,12 @@ const DetailPage = ({
       />
       <div className="detail">
         {keys.map((key) => (
-          <div className="detail-row" key={key}>
+          ( !!data[key] && data[key].length > 0 && <div className="detail-row" key={key}>
             <div className="detail-attribute">
               {key.toLowerCase().replaceAll('_', ' ')}:
             </div>
             <div className="detail-value">{displayValue(key)}</div>
-          </div>
+          </div>)
         ))}
       </div>
     </div>

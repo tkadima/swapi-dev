@@ -9,7 +9,11 @@ type TablePageProps<T> = {
   columns: any[]
   initialData: T[]
   initialNextPage: string | null
-  transformData: (data: any[], resourceMap: Map<string, string>, peopleSpeciesMap?: Map<string, string>) => T[]
+  transformData: (
+    data: any[],
+    resourceMap: Map<string, string>,
+    peopleSpeciesMap?: Map<string, string>,
+  ) => T[]
 }
 
 const TablePage = <T,>({
@@ -25,7 +29,7 @@ const TablePage = <T,>({
     revalidateOnFocus: false,
   })
 
-  const {resourceMap, peopleSpeciesMap } = useAppContext()
+  const { resourceMap, peopleSpeciesMap } = useAppContext()
 
   const handleFetchNextPage = useCallback(() => {
     if (nextPageData) {

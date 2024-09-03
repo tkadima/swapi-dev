@@ -21,10 +21,9 @@ const transformPeople = (
   resourceMap: Map<string, string>,
   peopleSpeciesMap: Map<string, string>,
 ) => {
-  
   return people.map((person) => {
-    const species = peopleSpeciesMap.get(person.url); 
-    person.species = species ? [species] : person.species;
+    const species = peopleSpeciesMap.get(person.url)
+    person.species = species ? [species] : person.species
     return {
       ...person,
       homeworld: setNameIdPair(person.homeworld, resourceMap),
@@ -55,7 +54,9 @@ const PeoplePage = ({ initialPeople, initialNextPage }: PeoplePageProps) => {
       columns={peopleColumnNames}
       initialData={initialPeople}
       initialNextPage={initialNextPage}
-      transformData={transformPeople}
+      transformData={(data, resourceMap, peopleSpeciesMap) =>
+        transformPeople(data, resourceMap, peopleSpeciesMap || new Map<string, string>())
+      }
     />
   )
 }
