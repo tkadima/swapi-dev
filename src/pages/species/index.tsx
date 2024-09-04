@@ -42,7 +42,7 @@ type SpeciesPageProps = {
 const SpeciesPage = ({ initialSpecies, initialNextPage }: SpeciesPageProps) => {
   return (
     <TablePage
-      title="Species"
+      title="species"
       columns={speciesColumnNames}
       initialData={initialSpecies}
       initialNextPage={initialNextPage}

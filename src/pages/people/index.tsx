@@ -50,7 +50,7 @@ type PeoplePageProps = {
 const PeoplePage = ({ initialPeople, initialNextPage }: PeoplePageProps) => {
   return (
     <TablePage
-      title="Characters"
+      title="characters"
       columns={peopleColumnNames}
       initialData={initialPeople}
       initialNextPage={initialNextPage}

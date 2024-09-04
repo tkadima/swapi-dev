@@ -36,7 +36,7 @@ type PlanetsPageProps = {
 const PlanetsPage = ({ initialData, initialNextPage }: PlanetsPageProps) => {
   return (
     <TablePage
-      title="Planets"
+      title="planets"
       columns={planetColumnNames}
       initialData={initialData}
       initialNextPage={initialNextPage}

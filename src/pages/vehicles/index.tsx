@@ -42,7 +42,7 @@ const VehiclesPage = ({
 }: VehiclesPageProps) => {
   return (
     <TablePage
-      title="Vehicles"
+      title="vehicles"
       columns={vehicleColumnNames}
       initialData={initialVehicles}
       initialNextPage={initialNextPage}

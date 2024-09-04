@@ -17,6 +17,7 @@ export const getServerSideProps = async () => {
 const transformFilms = (films: Film[], resourceMap: Map<string, string>) => {
   return films.map((film) => ({
     ...film,
+    release_date: new Date(film.release_date).toLocaleDateString(),
     characters: film.characters.map((characterUrl) =>
       setNameIdPair(characterUrl, resourceMap),
     ),
@@ -38,7 +39,7 @@ const FilmsPage = ({ initialData }: FilmsPageProps) => {
   return (
     <main>
       <TablePage
-        title="Films"
+        title="films"
         columns={filmColumnNames}
         initialData={initialData}
         initialNextPage={null}

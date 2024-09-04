@@ -39,7 +39,7 @@ type StarshipProps = {
 const StarshipPage = ({ intialStarships, initialNextPage }: StarshipProps) => {
   return (
     <TablePage
-      title="Starships"
+      title="starships"
       columns={starshipColumnNames}
       initialData={intialStarships}
       initialNextPage={initialNextPage}

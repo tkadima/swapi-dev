@@ -22,14 +22,14 @@ const theme = createTheme({
     fontFamily: `'Orbitron', Arial, sans-serif`,
     h1: {
       fontFamily: `'Star Jedi', Arial, sans-serif`,
-      fontSize: '1rem', // Large for major headers
+      fontSize: '1rem',
       fontWeight: 700,
       textAlign: 'center',
       color: '#ffd700',
     },
     h2: {
       fontFamily: `'Star Jedi', Arial, sans-serif`,
-      fontSize: '15rem', // Subheader size
+      fontSize: '15rem',
       fontWeight: 600,
       color: '#ff4500',
     },
@@ -41,24 +41,24 @@ const theme = createTheme({
     },
     // star wars logo
     h6: {
-      fontFamily: `'Star Jedi', Arial, sans-serif`, // Reserved for smaller headers like the nav title
+      fontFamily: `'Star Jedi', Arial, sans-serif`,
       fontSize: '1.5rem',
       fontWeight: 500,
       color: '#ffd700',
     },
     // title of table page
     body1: {
-      fontSize: '1.5rem', // Standard readable size for main text
+      fontSize: '1.5rem',
       fontFamily: `'Star Jedi', Arial, sans-serif`,
     },
     // cells of table page
     body2: {
-      fontSize: '0.875rem', // Slightly smaller text, used for footer or less important text
+      fontSize: '0.875rem',
       fontFamily: `'Orbitron', Arial, sans-serif`,
       fontWeight: 600,
     },
     button: {
-      fontSize: '1rem', // Matches body1 for readability
+      fontSize: '1rem',
       fontFamily: `'Orbitron', Arial, sans-serif`,
       fontWeight: 700,
     },
@@ -75,7 +75,7 @@ const theme = createTheme({
           borderRadius: '8px',
           padding: '8px 16px',
           '&.MuiButton-colorInherit': {
-            color: '#b0c4de', // Custom color for 'inherit' buttons
+            color: '#b0c4de',
           },
         },
       },

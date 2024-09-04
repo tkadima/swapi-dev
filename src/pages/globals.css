@@ -17,11 +17,6 @@ main {
   align-items: center;
 }
 
-.table {
-  width: 95vw;
-  height: 200vh;
-}
-
 .table-title {
   text-align: center;
   margin: 30px 0;
