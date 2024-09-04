@@ -7,7 +7,26 @@ export const ResourceLink = ({ field, id, name }: any) => {
   const fieldName = fieldNames[field]
   return (
     <Link href={`/${fieldName}/${id}`}>
-      <Typography id="resource-link" component="p" variant="subtitle1">
+      <Typography
+        id="resource-link"
+        component="p"
+        variant="subtitle1"
+        sx={{
+          margin: 0,
+          fontSize: '0.875rem',
+          textDecorationColor: 'text.secondary',
+          textDecoration: 'underline',
+          color: 'text.secondary',
+          '&:visited': {
+            color: 'text.secondary',
+            textDecorationColor: 'text.secondary',
+            textDecoration: 'underline',
+          },
+          '&:hover': {
+            color: 'main.primary',
+          },
+        }}
+      >
         {name}
       </Typography>
     </Link>
@@ -15,7 +34,7 @@ export const ResourceLink = ({ field, id, name }: any) => {
 }
 export const ListDisplay = ({ params }: any) => {
   const [showAll, setShowAll] = useState(false)
-  const maxVisibleItems = 5
+  const maxVisibleItems = 4
 
   if (params.value === undefined) return <div>Error</div>
 
@@ -45,7 +64,18 @@ export const ListDisplay = ({ params }: any) => {
         ))}
 
       {params.value.length > maxVisibleItems && (
-        <Button id="show-all-btn" onClick={handleToggle} size="small">
+        <Button
+          id="show-all-btn"
+          onClick={handleToggle}
+          size="small"
+          sx={{
+            alignSelf: 'start',
+            padding: 0,
+            textTransform: 'none',
+            justifyContent: 'flex-start',
+            fontSize: '0.875rem',
+          }}
+        >
           {showAll ? 'show less' : 'view more'}
         </Button>
       )}

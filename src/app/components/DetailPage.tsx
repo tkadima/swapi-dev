@@ -65,6 +65,9 @@ const DetailPage = ({
           className="detail-image"
           src={imageUrl}
           alt={data.title ?? data.name}
+          onError={(e) => {
+            e.currentTarget.src = `https://placehold.co/200?text=${data.title ?? data.name}`;
+          }}
         />
         <div className="detail">
           {keys.map(

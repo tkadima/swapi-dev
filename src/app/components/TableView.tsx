@@ -46,7 +46,7 @@ const TableView = ({ title, rows, columns }: TableViewProps) => {
         }}
         pageSizeOptions={[10, 25, 50, 100]}
         onRowClick={(row, e: any) => handleRowClick(row, e)}
-        rowHeight={200}
+        rowHeight={150}
       />
     </div>
   )

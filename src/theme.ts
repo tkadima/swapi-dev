@@ -17,7 +17,6 @@ const theme = createTheme({
       primary: '#ffffff',
       secondary: '#b0c4de',
     },
-    
   },
   typography: {
     fontFamily: `'Orbitron', Arial, sans-serif`,
@@ -40,30 +39,33 @@ const theme = createTheme({
       fontWeight: 600,
       color: '#ffd700',
     },
-    // star wars logo 
+    // star wars logo
     h6: {
       fontFamily: `'Star Jedi', Arial, sans-serif`, // Reserved for smaller headers like the nav title
       fontSize: '1.5rem',
       fontWeight: 500,
-     color: '#ffd700',
+      color: '#ffd700',
     },
-    // title of table page 
+    // title of table page
     body1: {
       fontSize: '1.5rem', // Standard readable size for main text
       fontFamily: `'Star Jedi', Arial, sans-serif`,
     },
+    // cells of table page
     body2: {
       fontSize: '0.875rem', // Slightly smaller text, used for footer or less important text
       fontFamily: `'Orbitron', Arial, sans-serif`,
+      fontWeight: 600,
     },
     button: {
       fontSize: '1rem', // Matches body1 for readability
       fontFamily: `'Orbitron', Arial, sans-serif`,
       fontWeight: 700,
     },
+    // resource lists
     subtitle1: {
-      fontSize: '0.875rem', // Small text for captions
       fontFamily: `'Orbitron', Arial, sans-serif`,
+      fontWeight: 600,
     },
   },
   components: {
