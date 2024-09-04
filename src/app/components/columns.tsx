@@ -3,35 +3,35 @@ import { ListDisplay, ResourceLink } from './ResourceLinks'
 import { formatNumber } from '../helpers'
 
 export const filmColumnNames: GridColDef[] = [
-  { field: 'title', headerName: 'Title', width: 180 },
-  { field: 'episode_id', headerName: 'Episode ID', width: 120 },
-  { field: 'director', headerName: 'Director', width: 180 },
+  { field: 'title', headerName: 'title', width: 180 },
+  { field: 'episode_id', headerName: 'episode id', width: 120 },
+  { field: 'director', headerName: 'director', width: 180 },
   {
     field: 'release_date',
-    headerName: 'Release Date',
+    headerName: 'release date',
     width: 180,
     renderCell: (params) => new Date(params.value).toLocaleDateString(),
   },
   {
     field: 'characters',
-    headerName: 'Characters',
+    headerName: 'characters',
     width: 350,
     renderCell: (params) => <ListDisplay params={params} />,
   },
   {
     field: 'vehicles',
-    headerName: 'Vehicles',
+    headerName: 'vehicles',
     width: 250,
     renderCell: (params) => <ListDisplay params={params} />,
   },
 ]
 
 export const peopleColumnNames: GridColDef[] = [
-  { field: 'name', headerName: 'Name', width: 180 },
-  { field: 'gender', headerName: 'Gender', width: 120 },
+  { field: 'name', headerName: 'name', width: 180 },
+  { field: 'gender', headerName: 'gender', width: 120 },
   {
     field: 'homeworld',
-    headerName: 'Home World',
+    headerName: 'home world',
     width: 200,
     renderCell: (params) => (
       <ResourceLink
@@ -43,100 +43,100 @@ export const peopleColumnNames: GridColDef[] = [
   },
   {
     field: 'films',
-    headerName: 'Films',
+    headerName: 'films',
     width: 350,
     renderCell: (params) => <ListDisplay params={params} />,
   },
   {
     field: 'species',
-    headerName: 'Species',
+    headerName: 'species',
     width: 300,
     renderCell: (params) => <ListDisplay params={params} />,
   },
   {
     field: 'vehicles',
-    headerName: 'Vehicles',
+    headerName: 'vehicles',
     width: 250,
     renderCell: (params) => <ListDisplay params={params} />,
   },
   {
     field: 'starships',
-    headerName: 'Starships',
+    headerName: 'starships',
     width: 250,
     renderCell: (params) => <ListDisplay params={params} />,
   },
 ]
 
 export const vehicleColumnNames: GridColDef[] = [
-  { field: 'name', headerName: 'Name', width: 180 },
-  { field: 'model', headerName: 'Model', width: 180 },
-  { field: 'manufacturer', headerName: 'Manufacturer', width: 180 },
-  { field: 'vehicle_class', headerName: 'Vehicle Class', width: 180 },
+  { field: 'name', headerName: 'name', width: 180 },
+  { field: 'model', headerName: 'model', width: 180 },
+  { field: 'manufacturer', headerName: 'manufacturer', width: 180 },
+  { field: 'vehicle_class', headerName: 'vehicle class', width: 180 },
   {
     field: 'films',
-    headerName: 'Films',
+    headerName: 'films',
     width: 350,
     renderCell: (params) => <ListDisplay params={params} />,
   },
   {
     field: 'pilots',
-    headerName: 'Pilots',
+    headerName: 'pilots',
     width: 250,
     renderCell: (params) => <ListDisplay params={params} />,
   },
 ]
 
 export const starshipColumnNames: GridColDef[] = [
-  { field: 'name', headerName: 'Name', width: 180 },
-  { field: 'model', headerName: 'Model', width: 180 },
-  { field: 'manufacturer', headerName: 'Manufacturer', width: 180 },
-  { field: 'starship_class', headerName: 'Starship Class', width: 180 },
+  { field: 'name', headerName: 'name', width: 180 },
+  { field: 'model', headerName: 'model', width: 180 },
+  { field: 'manufacturer', headerName: 'manufacturer', width: 180 },
+  { field: 'starship_class', headerName: 'starship class', width: 180 },
   {
     field: 'films',
-    headerName: 'Films',
+    headerName: 'films',
     width: 350,
     renderCell: (params) => <ListDisplay params={params} />,
   },
   {
     field: 'pilots',
-    headerName: 'Pilots',
+    headerName: 'pilots',
     width: 250,
     renderCell: (params) => <ListDisplay params={params} />,
   },
 ]
 
 export const planetColumnNames: GridColDef[] = [
-  { field: 'name', headerName: 'Name', width: 180 },
-  { field: 'climate', headerName: 'Climate', width: 180 },
-  { field: 'terrain', headerName: 'Terrain', width: 180 },
+  { field: 'name', headerName: 'name', width: 180 },
+  { field: 'climate', headerName: 'climate', width: 180 },
+  { field: 'terrain', headerName: 'terrain', width: 180 },
   {
     field: 'population',
-    headerName: 'Population',
+    headerName: 'population',
     width: 180,
     renderCell: (params) => formatNumber(params.value),
   },
   {
     field: 'residents',
-    headerName: 'Residents',
+    headerName: 'residents',
     width: 250,
     renderCell: (params) => <ListDisplay params={params} />,
   },
   {
     field: 'films',
-    headerName: 'Films',
+    headerName: 'films',
     width: 350,
     renderCell: (params) => <ListDisplay params={params} />,
   },
 ]
 
 export const speciesColumnNames: GridColDef[] = [
-  { field: 'name', headerName: 'Name', width: 180 },
-  { field: 'classification', headerName: 'Classification', width: 180 },
-  { field: 'designation', headerName: 'Designation', width: 180 },
-  { field: 'language', headerName: 'Language', width: 180 },
+  { field: 'name', headerName: 'name', width: 180 },
+  { field: 'classification', headerName: 'classification', width: 180 },
+  { field: 'designation', headerName: 'designation', width: 180 },
+  { field: 'language', headerName: 'language', width: 180 },
   {
     field: 'homeworld',
-    headerName: 'Homeworld',
+    headerName: 'homeworld',
     width: 180,
     renderCell: (params) => (
       <ResourceLink
@@ -148,13 +148,13 @@ export const speciesColumnNames: GridColDef[] = [
   },
   {
     field: 'people',
-    headerName: 'People',
+    headerName: 'people',
     width: 250,
     renderCell: (params) => <ListDisplay params={params} />,
   },
   {
     field: 'films',
-    headerName: 'Films',
+    headerName: 'films',
     width: 350,
     renderCell: (params) => <ListDisplay params={params} />,
   },

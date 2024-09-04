@@ -31,8 +31,9 @@ const AppNavBar = ({ activePage }: AppNavBarProps) => {
               color={
                 activePage.startsWith('/' + page) ? 'secondary' : 'inherit'
               }
+              sx={{ fontSize: '1rem' }}
             >
-              {page}
+              {page.toLowerCase()}
             </Button>
           </Link>
         ))}

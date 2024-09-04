@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import router from 'next/router'
 import React, { MouseEvent } from 'react'
@@ -32,7 +33,9 @@ const TableView = ({ title, rows, columns }: TableViewProps) => {
 
   return (
     <div className="table-view">
-      <h2>{title}</h2>
+      <Typography component="h2" className="table-title">
+        {title}
+      </Typography>
       <DataGrid
         className="table"
         rows={rows}

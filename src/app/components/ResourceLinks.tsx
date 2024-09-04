@@ -46,7 +46,7 @@ export const ListDisplay = ({ params }: any) => {
 
       {params.value.length > maxVisibleItems && (
         <Button id="show-all-btn" onClick={handleToggle} size="small">
-          {showAll ? 'Show Less' : 'View More'}
+          {showAll ? 'show less' : 'view more'}
         </Button>
       )}
     </Box>

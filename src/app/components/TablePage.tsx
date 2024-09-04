@@ -1,4 +1,4 @@
-import { MouseEvent, useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import useSWR from 'swr'
 import { fetcher } from '@/app/helpers'
 import TableView from '@/app/components/TableView'

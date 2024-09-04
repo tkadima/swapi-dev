@@ -35,13 +35,14 @@ const DetailPage = ({
     const value = data[key]
     if (key === 'species' && resourceType === 'people' && value.length > 0) {
       const species = peopleSpeciesMap.get(data.url)
-       return (
-        species &&
-        <ResourceLink
-          field={key}
-          id={getId(species)}
-          name={resourceMap.get(species) || species}
-        />
+      return (
+        species && (
+          <ResourceLink
+            field={key}
+            id={getId(species)}
+            name={resourceMap.get(species) || species}
+          />
+        )
       )
     }
     if (Array.isArray(value)) {
@@ -54,28 +55,33 @@ const DetailPage = ({
         />
       ))
       return <div className="detail-list-value">{arr}</div>
-    }
-    else return resourceMap.get(value) || value
+    } else return resourceMap.get(value) || value
   }
 
   return (
-    <div className="detail-container">
-      <img
-        className="detail-image"
-        src={imageUrl}
-        alt={data.title ?? data.name}
-      />
-      <div className="detail">
-        {keys.map((key) => (
-          ( !!data[key] && data[key].length > 0 && <div className="detail-row" key={key}>
-            <div className="detail-attribute">
-              {key.toLowerCase().replaceAll('_', ' ')}:
-            </div>
-            <div className="detail-value">{displayValue(key)}</div>
-          </div>)
-        ))}
+    <main>
+      <div className="detail-container">
+        <img
+          className="detail-image"
+          src={imageUrl}
+          alt={data.title ?? data.name}
+        />
+        <div className="detail">
+          {keys.map(
+            (key) =>
+              !!data[key] &&
+              data[key].length > 0 && (
+                <div className="detail-row" key={key}>
+                  <div className="detail-attribute">
+                    {key.toLowerCase().replaceAll('_', ' ')}:
+                  </div>
+                  <div className="detail-value">{displayValue(key)}</div>
+                </div>
+              ),
+          )}
+        </div>
       </div>
-    </div>
+    </main>
   )
 }
 export default DetailPage

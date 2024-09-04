@@ -36,13 +36,15 @@ type FilmsPageProps = {
 
 const FilmsPage = ({ initialData }: FilmsPageProps) => {
   return (
-    <TablePage
-      title="Films"
-      columns={filmColumnNames}
-      initialData={initialData}
-      initialNextPage={null}
-      transformData={transformFilms}
-    />
+    <main>
+      <TablePage
+        title="Films"
+        columns={filmColumnNames}
+        initialData={initialData}
+        initialNextPage={null}
+        transformData={transformFilms}
+      />
+    </main>
   )
 }
 

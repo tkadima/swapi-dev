@@ -55,7 +55,11 @@ const PeoplePage = ({ initialPeople, initialNextPage }: PeoplePageProps) => {
       initialData={initialPeople}
       initialNextPage={initialNextPage}
       transformData={(data, resourceMap, peopleSpeciesMap) =>
-        transformPeople(data, resourceMap, peopleSpeciesMap || new Map<string, string>())
+        transformPeople(
+          data,
+          resourceMap,
+          peopleSpeciesMap || new Map<string, string>(),
+        )
       }
     />
   )
