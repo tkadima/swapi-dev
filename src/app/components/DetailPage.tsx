@@ -54,7 +54,16 @@ const DetailPage = ({
           name={resourceMap.get(val) || val}
         />
       ))
+
       return <div className="detail-list-value">{arr}</div>
+    } else if (key === 'homeworld') {
+      return (
+        <ResourceLink
+          field={key}
+          id={getId(value)}
+          name={resourceMap.get(value) || value}
+        />
+      )
     } else return resourceMap.get(value) || value
   }
 

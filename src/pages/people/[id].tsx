@@ -4,13 +4,13 @@ import { fetcher } from '@/app/helpers'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
 
-const FilmDetailPage = () => {
+const PeopleDetailPage = () => {
   const router = useRouter()
   const { id } = router.query
   const skip = ['created', 'edited', 'url']
 
   const {
-    data: film,
+    data: people,
     isLoading,
     error,
   } = useSWR(`${peopleEndpoint}/${id}`, fetcher)
@@ -21,9 +21,9 @@ const FilmDetailPage = () => {
       resourceType="characters"
       isLoading={isLoading}
       error={error}
-      data={film}
+      data={people}
       skip={skip}
     />
   )
 }
-export default FilmDetailPage
+export default PeopleDetailPage

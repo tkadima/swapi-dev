@@ -29,7 +29,14 @@ const FilmDetailPage = () => {
       resourceType="films"
       isLoading={isLoading}
       error={error}
-      data={film}
+      data={{
+        ...film,
+        release_date: new Date(film.release_date).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        }),
+      }}
       skip={skip}
     />
   )
