@@ -1,6 +1,7 @@
-import { GridColDef } from '@mui/x-data-grid';
-import { ListDisplay, ResourceLink } from './ResourceLinks';
-import { formatNumber } from '../helpers';
+import { GridColDef } from '@mui/x-data-grid'
+import { ListDisplay, ResourceLink } from './ResourceLinks'
+import { formatNumber } from '../helpers'
+import { Box } from '@mui/material'
 
 export const filmColumnNames: GridColDef[] = [
   { field: 'title', headerName: 'Title', flex: 1, minWidth: 250 },
@@ -26,7 +27,7 @@ export const filmColumnNames: GridColDef[] = [
     minWidth: 350,
     renderCell: (params) => <ListDisplay params={params} />,
   },
-];
+]
 
 export const peopleColumnNames: GridColDef[] = [
   { field: 'name', headerName: 'Name', flex: 1, minWidth: 150 },
@@ -37,21 +38,25 @@ export const peopleColumnNames: GridColDef[] = [
     flex: 1,
     minWidth: 150,
     renderCell: (params) => (
-      <ResourceLink field={params.field} name={params.value.name} id={params.value.id} />
+      <ResourceLink
+        field={params.field}
+        name={params.value.name}
+        id={params.value.id}
+      />
     ),
   },
   {
     field: 'films',
     headerName: 'Films',
     flex: 2,
-    minWidth: 250,
+    minWidth: 350,
     renderCell: (params) => <ListDisplay params={params} />,
   },
   {
     field: 'species',
     headerName: 'Species',
     flex: 1.5,
-    minWidth: 250,
+    minWidth: 350,
     renderCell: (params) => <ListDisplay params={params} />,
   },
   {
@@ -68,13 +73,18 @@ export const peopleColumnNames: GridColDef[] = [
     minWidth: 250,
     renderCell: (params) => <ListDisplay params={params} />,
   },
-];
+]
 
 export const vehicleColumnNames: GridColDef[] = [
   { field: 'name', headerName: 'Name', flex: 1, minWidth: 150 },
   { field: 'model', headerName: 'Model', flex: 1, minWidth: 150 },
   { field: 'manufacturer', headerName: 'Manufacturer', flex: 1, minWidth: 250 },
-  { field: 'vehicle_class', headerName: 'Vehicle class', flex: 1, minWidth: 150 },
+  {
+    field: 'vehicle_class',
+    headerName: 'Vehicle class',
+    flex: 1,
+    minWidth: 150,
+  },
   {
     field: 'films',
     headerName: 'Films',
@@ -89,13 +99,18 @@ export const vehicleColumnNames: GridColDef[] = [
     minWidth: 250,
     renderCell: (params) => <ListDisplay params={params} />,
   },
-];
+]
 
 export const starshipColumnNames: GridColDef[] = [
   { field: 'name', headerName: 'Name', flex: 1, minWidth: 300 },
   { field: 'model', headerName: 'Model', flex: 1, minWidth: 300 },
   { field: 'manufacturer', headerName: 'Manufacturer', flex: 1, minWidth: 250 },
-  { field: 'starship_class', headerName: 'Starship class', flex: 1, minWidth: 150 },
+  {
+    field: 'starship_class',
+    headerName: 'Starship class',
+    flex: 1,
+    minWidth: 150,
+  },
   {
     field: 'films',
     headerName: 'Films',
@@ -110,7 +125,7 @@ export const starshipColumnNames: GridColDef[] = [
     minWidth: 250,
     renderCell: (params) => <ListDisplay params={params} />,
   },
-];
+]
 
 export const planetColumnNames: GridColDef[] = [
   { field: 'name', headerName: 'Name', flex: 1, minWidth: 150 },
@@ -137,11 +152,16 @@ export const planetColumnNames: GridColDef[] = [
     minWidth: 250,
     renderCell: (params) => <ListDisplay params={params} />,
   },
-];
+]
 
 export const speciesColumnNames: GridColDef[] = [
   { field: 'name', headerName: 'Name', flex: 1, minWidth: 150 },
-  { field: 'classification', headerName: 'Classification', flex: 1, minWidth: 150 },
+  {
+    field: 'classification',
+    headerName: 'Classification',
+    flex: 1,
+    minWidth: 150,
+  },
   { field: 'language', headerName: 'Language', flex: 1, minWidth: 150 },
   {
     field: 'homeworld',
@@ -149,7 +169,11 @@ export const speciesColumnNames: GridColDef[] = [
     flex: 1,
     minWidth: 150,
     renderCell: (params) => (
-      <ResourceLink field={params.field} id={params.value?.id} name={params.value?.name} />
+      <ResourceLink
+        field={params.field}
+        id={params.value?.id}
+        name={params.value?.name}
+      />
     ),
   },
   {
@@ -166,4 +190,4 @@ export const speciesColumnNames: GridColDef[] = [
     minWidth: 250,
     renderCell: (params) => <ListDisplay params={params} />,
   },
-];
+]

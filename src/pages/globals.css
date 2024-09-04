@@ -48,7 +48,7 @@ main {
   display: flex;
   margin-bottom: 40px;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 0.8em;
 }
 
 .detail-attribute {
@@ -57,7 +57,7 @@ main {
     Star Jedi,
     Arial,
     sans-serif;
-  font-size: 0.8em;
+  font-size: 0.7em;
   width: 250px;
 }
 
@@ -66,7 +66,7 @@ main {
   word-break: break-word;
   font-weight: bolder;
   font-family: Orbitron, Arial, sans-serif;
-  font-size: 0.7em;
+  font-size: 0.65em;
 }
 
 .detail-list-value {

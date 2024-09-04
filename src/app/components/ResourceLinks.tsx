@@ -6,30 +6,33 @@ import { useState } from 'react'
 export const ResourceLink = ({ field, id, name }: any) => {
   const fieldName = fieldNames[field]
   return (
-    <Link href={`/${fieldName}/${id}`}>
-      <Typography
-        id="resource-link"
-        component="p"
-        variant="subtitle1"
-        sx={{
-          margin: 0,
-          fontSize: '0.875rem',
-          textDecorationColor: 'text.secondary',
-          textDecoration: 'underline',
-          color: 'text.secondary',
-          '&:visited': {
-            color: 'text.secondary',
-            textDecorationColor: 'text.secondary',
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        height: '100%',
+      }}
+    >
+      <Link href={`/${fieldName}/${id}`}>
+        <Typography
+          id="resource-link"
+          component="p"
+          variant="subtitle1"
+          sx={(theme) => ({
+            margin: 0,
+            fontSize: '0.875rem',
+            textDecorationColor: theme.palette.text.secondary,
             textDecoration: 'underline',
-          },
-          '&:hover': {
-            color: 'main.primary',
-          },
-        }}
-      >
-        {name}
-      </Typography>
-    </Link>
+            color: theme.palette.text.secondary,
+            '&:hover': {
+              color: theme.palette.secondary.main,
+            },
+          })}
+        >
+          {name}
+        </Typography>
+      </Link>
+    </Box>
   )
 }
 export const ListDisplay = ({ params }: any) => {
@@ -45,11 +48,12 @@ export const ListDisplay = ({ params }: any) => {
   return (
     <Box
       sx={{
-        margin: '10px',
         display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'center',
         maxHeight: showAll ? 200 : 'auto',
         overflowY: showAll ? 'auto' : 'hidden',
+        height: '100%',
       }}
     >
       {params.value

@@ -64,7 +64,6 @@ const theme = createTheme({
     },
     // resource lists
     subtitle1: {
-      fontFamily: `'Orbitron', Arial, sans-serif`,
       fontWeight: 600,
     },
   },
