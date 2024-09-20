@@ -70,4 +70,9 @@ We want to be able to display all the films this character is in with a link but
 
 Context also manages the state for `speciesMap` which matches the url for a character and it's species. The reason I do this is because some of the characters are missing their species but the response for a species lists all the characters that are of that species. The `speciesMap` fetches all the species and maps the character url to species and then uses `resourceMap` to get the name of the species to be displayed in the "people" table view. That way we have easy access to the species' name and the link to the resource. 
 
-
+TODO: 
+- SSR explai
+- data fetching & pagination 
+- MUI data grid 
+- fix folder structure section 
+- Add demo video 
