@@ -1,7 +1,6 @@
 import { GridColDef } from '@mui/x-data-grid'
 import { ListDisplay, ResourceLink } from './ResourceLinks'
 import { formatNumber } from '../helpers'
-import { Box } from '@mui/material'
 
 export const filmColumnNames: GridColDef[] = [
   { field: 'title', headerName: 'Title', flex: 1, minWidth: 250 },
@@ -49,21 +48,21 @@ export const peopleColumnNames: GridColDef[] = [
     field: 'films',
     headerName: 'Films',
     flex: 2,
-    minWidth: 350,
+    minWidth: 250,
     renderCell: (params) => <ListDisplay params={params} />,
   },
   {
     field: 'species',
     headerName: 'Species',
-    flex: 1.5,
-    minWidth: 350,
+    flex: 1,
+    minWidth: 250,
     renderCell: (params) => <ListDisplay params={params} />,
   },
   {
     field: 'vehicles',
     headerName: 'Vehicles',
-    flex: 1.5,
-    minWidth: 300,
+    flex: 1,
+    minWidth: 250,
     renderCell: (params) => <ListDisplay params={params} />,
   },
   {
