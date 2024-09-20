@@ -1,38 +1,76 @@
 # Star Wars API
-Uses the API https://swapi.dev/api/ to display films, characters, vehicles,  planets, starships, species
 
-## Running the project
+This project uses the [SWAPI (Star Wars API)](https://swapi.dev/api/) to display information about films, characters, vehicles, planets, starships, and species from the Star Wars universe.
 
-### With NPM
+## Prerequisites
 
-To run the project locally with npm, use the following commands:
+Ensure that you have the following installed before proceeding:
 
-1. Install dependencies
+- **Node.js** (version 14 or higher recommended)
+- **NPM** (Node Package Manager)
+- **Docker** (if running the project with Docker)
 
-```
-npm install
-```
+## Running the Project
 
-2. Run the development server
+You can run the project locally using either NPM or Docker.
 
-```
-npm run dev
-```
+### Running with NPM
 
-### With Docker
+To run the project locally with npm, follow these steps:
 
-To run the project using Docker, follow these steps:
+1. **Install Dependencies:**
 
-1. Build the Docker image:
+   Run the following command to install all necessary packages:
 
-```
-npm run docker:build
-```
+   ```bash
+   npm install
+   ```
 
-2. Run the Docker container
+2. **Start the Development Server:**
 
-```
-npm run docker:run
-```
+   Run the following command to start the server:
 
-Your application will be available at http://localhost:3000.
+   ```bash
+   npm run dev
+   ```
+
+3. **Access the Application:**
+
+   Once the server is running, open your browser and navigate to:
+
+   ```
+   http://localhost:3000
+   ```
+
+### Running with Docker
+
+Alternatively, you can run the project using Docker. Follow these steps:
+
+1. **Build the Docker Image:**
+
+   Run the following command to build the Docker image for the project:
+
+   ```bash
+   npm run docker:build
+   ```
+
+2. **Run the Docker Container:**
+
+   After building the image, run the Docker container with the following command:
+
+   ```bash
+   npm run docker:run
+   ```
+
+3. **Access the Application:**
+
+   Once the container is up and running, open your browser and navigate to:
+
+   ```
+   http://localhost:3000
+   ```
+
+## Additional Information
+
+- For any issues or questions, refer to the official [SWAPI documentation](https://swapi.dev/documentation) to understand how the API functions.
+- This project is set up to automatically restart the development server if any changes are made to the source files during local development.
