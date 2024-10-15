@@ -1,3 +1,4 @@
+import { useAppContext } from '@/app/components/AppContext'
 import DetailPage from '@/app/components/DetailPage'
 import { filmEndpoint } from '@/app/endpoints'
 import { fetcher } from '@/app/helpers'
@@ -14,6 +15,22 @@ const FilmDetailPage = () => {
     isLoading,
     error,
   } = useSWR(`${filmEndpoint}/${id}`, fetcher)
+
+  const {
+    peopleMap,
+    vehiclesMap,
+    planetsMap,
+    starshipsMap,
+    speciesMap,
+  } = useAppContext()
+
+  const resourceMap = new Map<string, string>([
+    ...peopleMap,
+    ...vehiclesMap,
+    ...planetsMap,
+    ...starshipsMap,
+    ...speciesMap,
+  ])
 
   if (isLoading) {
     return <div>Loading...</div>
@@ -37,6 +54,7 @@ const FilmDetailPage = () => {
           day: 'numeric',
         }),
       }}
+      resourceMap={resourceMap}
       skip={skip}
     />
   )

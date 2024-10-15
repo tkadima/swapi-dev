@@ -7,6 +7,7 @@ type DetailPageProps = {
   resourceType: string
   skip: string[]
   data: any
+  resourceMap: Map<string, string>
   isLoading: boolean
   error: any
 }
@@ -15,10 +16,11 @@ const DetailPage = ({
   resourceType,
   skip,
   data,
+  resourceMap,
   isLoading,
   error,
 }: DetailPageProps) => {
-  const { resourceMap, peopleSpeciesMap } = useAppContext()
+  const { peopleSpeciesMap } = useAppContext()
 
   if (isLoading) {
     return <div>Loading...</div>
@@ -27,24 +29,17 @@ const DetailPage = ({
   if (error) {
     return <div>Failed to load</div>
   }
-
-  const keys = Object.keys(data).filter((key) => !skip.includes(key))
+  if (
+    resourceType === 'characters'
+  ){
+    const species = peopleSpeciesMap.get(data.url) 
+    data.species = species; 
+  } 
+  const keys = Object.keys(data).filter((key) => !skip.includes(key) && !!data[key] && data[key].length > 0)
   const imageUrl = `https://starwars-visualguide.com/assets/img/${resourceType}/${id}.jpg`
 
   const displayValue = (key: string) => {
     const value = data[key]
-    if (key === 'species' && resourceType === 'people' && value.length > 0) {
-      const species = peopleSpeciesMap.get(data.url)
-      return (
-        species && (
-          <ResourceLink
-            field={key}
-            id={getId(species)}
-            name={resourceMap.get(species) || species}
-          />
-        )
-      )
-    }
     if (Array.isArray(value)) {
       const arr = value.map((val) => (
         <ResourceLink
@@ -55,8 +50,8 @@ const DetailPage = ({
         />
       ))
 
-      return <div className="detail-list-value">{arr}</div>
-    } else if (key === 'homeworld') {
+    return <div className="detail-list-value">{arr}</div>
+    } else if (key === 'homeworld' || key === 'species') {
       return (
         <ResourceLink
           field={key}
@@ -81,8 +76,7 @@ const DetailPage = ({
         <div className="detail">
           {keys.map(
             (key) =>
-              !!data[key] &&
-              data[key].length > 0 && (
+              !!data[key] && (
                 <div className="detail-row" key={key}>
                   <div className="detail-attribute">
                     {key.toLowerCase().replaceAll('_', ' ')}:

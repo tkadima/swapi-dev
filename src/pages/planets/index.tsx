@@ -35,7 +35,7 @@ type PlanetsPageProps = {
 }
 
 const PlanetsPage = ({ initialData, initialNextPage }: PlanetsPageProps) => {
-  const { peopleMap, filmsMap } = useAppContext(); 
+  const { peopleMap, filmsMap } = useAppContext()
   return (
     <TablePage
       title="planets"

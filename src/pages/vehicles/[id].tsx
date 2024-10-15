@@ -1,3 +1,4 @@
+import { useAppContext } from '@/app/components/AppContext'
 import DetailPage from '@/app/components/DetailPage'
 import { vehicleEndpoint } from '@/app/endpoints'
 import { fetcher } from '@/app/helpers'
@@ -15,12 +16,17 @@ const VehicleDetailPage = () => {
     error,
   } = useSWR(`${vehicleEndpoint}/${id}`, fetcher)
 
+  const { peopleMap, filmsMap } = useAppContext();
+
   return (
     <DetailPage
       id={id as string}
       resourceType="vehicles"
       isLoading={isLoading}
       error={error}
+      resourceMap={
+        new Map<string, string>([...peopleMap, ...filmsMap])
+      }
       data={vehicle}
       skip={skip}
     />

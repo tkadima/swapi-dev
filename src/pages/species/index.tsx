@@ -41,12 +41,12 @@ type SpeciesPageProps = {
   initialNextPage: string | null
 }
 const SpeciesPage = ({ initialSpecies, initialNextPage }: SpeciesPageProps) => {
-  const { peopleMap, filmsMap, planetsMap } = useAppContext(); 
+  const { peopleMap, filmsMap, planetsMap } = useAppContext()
   const resourceMap = new Map<string, string>([
     ...peopleMap,
     ...filmsMap,
-    ...planetsMap
-  ]);
+    ...planetsMap,
+  ])
   return (
     <TablePage
       title="species"

@@ -1,4 +1,12 @@
-import { AppBar, Button, IconButton, Toolbar, Typography, Menu, MenuItem } from '@mui/material'
+import {
+  AppBar,
+  Button,
+  IconButton,
+  Toolbar,
+  Typography,
+  Menu,
+  MenuItem,
+} from '@mui/material'
 import React, { useState } from 'react'
 import Link from 'next/link'
 
@@ -23,7 +31,12 @@ const AppNavBar = ({ activePage }: AppNavBarProps) => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+        <IconButton
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          sx={{ mr: 2 }}
+        >
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             Star Wars
           </Typography>
@@ -32,7 +45,9 @@ const AppNavBar = ({ activePage }: AppNavBarProps) => {
         {pages.map((page, index) => (
           <Link key={index} href={'/' + page} passHref>
             <Button
-              color={activePage.startsWith('/' + page) ? 'secondary' : 'inherit'}
+              color={
+                activePage.startsWith('/' + page) ? 'secondary' : 'inherit'
+              }
               sx={{ fontSize: '1rem' }}
             >
               {page.toLowerCase()}

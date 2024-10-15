@@ -1,4 +1,10 @@
-import React, { ReactNode, createContext, useContext, useEffect, useState } from 'react'
+import React, {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 import axios from 'axios'
 
 // Define the endpoints for each resource
@@ -21,9 +27,13 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [filmsMap, setFilmsMap] = useState<Map<string, string>>(new Map())
   const [vehiclesMap, setVehiclesMap] = useState<Map<string, string>>(new Map())
   const [planetsMap, setPlanetsMap] = useState<Map<string, string>>(new Map())
-  const [starshipsMap, setStarshipsMap] = useState<Map<string, string>>(new Map())
+  const [starshipsMap, setStarshipsMap] = useState<Map<string, string>>(
+    new Map(),
+  )
   const [speciesMap, setSpeciesMap] = useState<Map<string, string>>(new Map())
-  const [peopleSpeciesMap, setPeopleSpeciesMap] = useState<Map<string, string>>(new Map())
+  const [peopleSpeciesMap, setPeopleSpeciesMap] = useState<Map<string, string>>(
+    new Map(),
+  )
 
   // Function to fetch one page of records and return the results and the next URL
   const fetchPage = async (url: string) => {
@@ -35,7 +45,10 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   }
 
   // Function to fetch and update the map for a specific resource
-  const fetchResource = async (endpoint: string, setMap: React.Dispatch<React.SetStateAction<Map<string, string>>>) => {
+  const fetchResource = async (
+    endpoint: string,
+    setMap: React.Dispatch<React.SetStateAction<Map<string, string>>>,
+  ) => {
     let url = endpoint
     let map = new Map<string, string>()
 
@@ -63,7 +76,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           speciesToPeopleMap.set(personUrl, speciesUrl)
         })
       })
-      setPeopleSpeciesMap(new Map(speciesToPeopleMap)) 
+      setPeopleSpeciesMap(new Map(speciesToPeopleMap))
       url = next
     }
   }
@@ -86,7 +99,17 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   }, [])
 
   return (
-    <AppContext.Provider value={{ peopleMap, filmsMap, vehiclesMap, planetsMap, starshipsMap, speciesMap, peopleSpeciesMap }}>
+    <AppContext.Provider
+      value={{
+        peopleMap,
+        filmsMap,
+        vehiclesMap,
+        planetsMap,
+        starshipsMap,
+        speciesMap,
+        peopleSpeciesMap,
+      }}
+    >
       {children}
     </AppContext.Provider>
   )

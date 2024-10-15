@@ -49,14 +49,15 @@ type PeoplePageProps = {
   initialNextPage: string | null
 }
 const PeoplePage = ({ initialPeople, initialNextPage }: PeoplePageProps) => {
-  const { filmsMap, vehiclesMap, planetsMap, speciesMap, starshipsMap } = useAppContext(); 
+  const { filmsMap, vehiclesMap, planetsMap, speciesMap, starshipsMap } =
+    useAppContext()
   const resourceMap = new Map<string, string>([
     ...filmsMap,
     ...vehiclesMap,
     ...planetsMap,
     ...speciesMap,
-    ...starshipsMap
-  ]);
+    ...starshipsMap,
+  ])
   return (
     <TablePage
       title="characters"

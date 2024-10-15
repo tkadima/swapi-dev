@@ -37,22 +37,22 @@ type FilmsPageProps = {
 }
 
 const FilmsPage = ({ initialData }: FilmsPageProps) => {
-  const { peopleMap, vehiclesMap, planetsMap, starshipsMap } = useAppContext();
+  const { peopleMap, vehiclesMap, planetsMap, starshipsMap } = useAppContext()
   const resourceMap = new Map<string, string>([
     ...peopleMap,
     ...vehiclesMap,
     ...planetsMap,
     ...starshipsMap,
-  ]); 
+  ])
   return (
-      <TablePage
-        title="films"
-        columns={filmColumnNames}
-        initialData={initialData}
-        initialNextPage={null}
-        transformData={transformFilms}
-        resourceMap={resourceMap}
-      />
+    <TablePage
+      title="films"
+      columns={filmColumnNames}
+      initialData={initialData}
+      initialNextPage={null}
+      transformData={transformFilms}
+      resourceMap={resourceMap}
+    />
   )
 }
 

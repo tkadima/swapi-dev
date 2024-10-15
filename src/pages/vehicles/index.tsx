@@ -41,7 +41,7 @@ const VehiclesPage = ({
   initialVehicles,
   initialNextPage,
 }: VehiclesPageProps) => {
-  const { peopleMap, filmsMap } = useAppContext();
+  const { peopleMap, filmsMap } = useAppContext()
   return (
     <TablePage
       title="vehicles"
