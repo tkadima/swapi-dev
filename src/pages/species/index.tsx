@@ -3,6 +3,7 @@ import { speciesColumnNames } from '@/app/components/columns'
 import { fetcher, setNameIdPair } from '@/app/helpers'
 import { Species } from '@/app/types'
 import TablePage from '@/app/components/TablePage'
+import { useAppContext } from '@/app/components/AppContext'
 
 export const getServerSideProps = async () => {
   const response = await fetcher(speciesEndpoint)
@@ -40,12 +41,19 @@ type SpeciesPageProps = {
   initialNextPage: string | null
 }
 const SpeciesPage = ({ initialSpecies, initialNextPage }: SpeciesPageProps) => {
+  const { peopleMap, filmsMap, planetsMap } = useAppContext(); 
+  const resourceMap = new Map<string, string>([
+    ...peopleMap,
+    ...filmsMap,
+    ...planetsMap
+  ]);
   return (
     <TablePage
       title="species"
       columns={speciesColumnNames}
       initialData={initialSpecies}
       initialNextPage={initialNextPage}
+      resourceMap={resourceMap}
       transformData={transformSpecies}
     />
   )

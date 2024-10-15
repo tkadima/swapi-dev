@@ -1,7 +1,8 @@
+import { useAppContext } from '@/app/components/AppContext'
 import TablePage from '@/app/components/TablePage'
 import { vehicleColumnNames } from '@/app/components/columns'
 import { vehicleEndpoint } from '@/app/endpoints'
-import { fetcher, getId, setNameIdPair } from '@/app/helpers'
+import { fetcher, setNameIdPair } from '@/app/helpers'
 import { Vehicle } from '@/app/types'
 
 export const getServerSideProps = async () => {
@@ -40,12 +41,14 @@ const VehiclesPage = ({
   initialVehicles,
   initialNextPage,
 }: VehiclesPageProps) => {
+  const { peopleMap, filmsMap } = useAppContext();
   return (
     <TablePage
       title="vehicles"
       columns={vehicleColumnNames}
       initialData={initialVehicles}
       initialNextPage={initialNextPage}
+      resourceMap={new Map([...peopleMap, ...filmsMap])}
       transformData={transformVehicles}
     />
   )
