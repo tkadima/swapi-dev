@@ -63,29 +63,29 @@ const DetailPage = ({
   }
 
   return (
-      <div className="detail-container">
-        <img
-          className="detail-image"
-          src={imageUrl}
-          alt={data.title ?? data.name}
-          onError={(e) => {
-            e.currentTarget.src = `https://placehold.co/200?text=${data.title ?? data.name}`
-          }}
-        />
-        <div className="detail">
-          {keys.map(
-            (key) =>
-              !!data[key] && (
-                <div className="detail-row" key={key}>
-                  <div className="detail-attribute">
-                    {key.toLowerCase().replaceAll('_', ' ')}:
-                  </div>
-                  <div className="detail-value">{displayValue(key)}</div>
+    <div className="detail-container">
+      <img
+        className="detail-image"
+        src={imageUrl}
+        alt={data.title ?? data.name}
+        onError={(e) => {
+          e.currentTarget.src = `https://placehold.co/200?text=${data.title ?? data.name}`
+        }}
+      />
+      <div className="detail">
+        {keys.map(
+          (key) =>
+            !!data[key] && (
+              <div className="detail-row" key={key}>
+                <div className="detail-attribute">
+                  {key.toLowerCase().replaceAll('_', ' ')}:
                 </div>
-              ),
-          )}
-        </div>
+                <div className="detail-value">{displayValue(key)}</div>
+              </div>
+            ),
+        )}
       </div>
+    </div>
   )
 }
 export default DetailPage

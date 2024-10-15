@@ -11,7 +11,7 @@ import {
   ListItem,
   ListItemText,
 } from '@mui/material'
-import MenuIcon from '@mui/icons-material/Menu';
+import MenuIcon from '@mui/icons-material/Menu'
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { useTheme, useMediaQuery } from '@mui/material'

@@ -50,7 +50,7 @@ const TableView = ({ title, rows, columns }: TableViewProps) => {
         sx={{
           '& .MuiDataGrid-root': {
             width: '100%',
-            minWidth: '0', 
+            minWidth: '0',
           },
           '& .MuiDataGrid-cell': {
             whiteSpace: 'normal',
