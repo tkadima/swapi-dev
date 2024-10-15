@@ -3,6 +3,7 @@ import { peopleColumnNames } from '@/app/components/columns'
 import { fetcher, setNameIdPair } from '@/app/helpers'
 import { Person } from '@/app/types'
 import TablePage from '@/app/components/TablePage'
+import { useAppContext } from '@/app/components/AppContext'
 
 export const getServerSideProps = async () => {
   const response = await fetcher(peopleEndpoint)
@@ -48,12 +49,21 @@ type PeoplePageProps = {
   initialNextPage: string | null
 }
 const PeoplePage = ({ initialPeople, initialNextPage }: PeoplePageProps) => {
+  const { filmsMap, vehiclesMap, planetsMap, speciesMap, starshipsMap } = useAppContext(); 
+  const resourceMap = new Map<string, string>([
+    ...filmsMap,
+    ...vehiclesMap,
+    ...planetsMap,
+    ...speciesMap,
+    ...starshipsMap
+  ]);
   return (
     <TablePage
       title="characters"
       columns={peopleColumnNames}
       initialData={initialPeople}
       initialNextPage={initialNextPage}
+      resourceMap={resourceMap}
       transformData={(data, resourceMap, peopleSpeciesMap) =>
         transformPeople(
           data,

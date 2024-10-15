@@ -3,6 +3,7 @@ import { planetEndpoint } from '@/app/endpoints'
 import { planetColumnNames } from '@/app/components/columns'
 import { fetcher, getId, setNameIdPair } from '@/app/helpers'
 import { Planet } from '@/app/types'
+import { useAppContext } from '@/app/components/AppContext'
 
 export const getServerSideProps = async () => {
   const response = await fetcher(planetEndpoint)
@@ -34,12 +35,14 @@ type PlanetsPageProps = {
 }
 
 const PlanetsPage = ({ initialData, initialNextPage }: PlanetsPageProps) => {
+  const { peopleMap, filmsMap } = useAppContext(); 
   return (
     <TablePage
       title="planets"
       columns={planetColumnNames}
       initialData={initialData}
       initialNextPage={initialNextPage}
+      resourceMap={new Map([...peopleMap, ...filmsMap])}
       transformData={transformPlanets}
     />
   )

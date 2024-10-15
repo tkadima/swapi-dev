@@ -1,10 +1,4 @@
-import React, {
-  ReactNode,
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from 'react'
+import React, { ReactNode, createContext, useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 
 // Define the endpoints for each resource
@@ -22,10 +16,14 @@ const AppContext = createContext<any>(null)
 
 // Provider component that fetches all data
 export const AppProvider = ({ children }: { children: ReactNode }) => {
-  const [resourceMap, setResourceMap] = useState<Map<string, string>>(new Map())
-  const [peopleSpeciesMap, setPeopleSpeciesMap] = useState<Map<string, string>>(
-    new Map(),
-  )
+  // Individual maps for each resource type
+  const [peopleMap, setPeopleMap] = useState<Map<string, string>>(new Map())
+  const [filmsMap, setFilmsMap] = useState<Map<string, string>>(new Map())
+  const [vehiclesMap, setVehiclesMap] = useState<Map<string, string>>(new Map())
+  const [planetsMap, setPlanetsMap] = useState<Map<string, string>>(new Map())
+  const [starshipsMap, setStarshipsMap] = useState<Map<string, string>>(new Map())
+  const [speciesMap, setSpeciesMap] = useState<Map<string, string>>(new Map())
+  const [peopleSpeciesMap, setPeopleSpeciesMap] = useState<Map<string, string>>(new Map())
 
   // Function to fetch all records from a given SWAPI endpoint and return a map
   const fetchAllRecords = async (endpoint: string) => {
@@ -47,7 +45,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   // Function to fetch all species and create a map of people to species
   const fetchSpeciesAndMapPeople = async () => {
     let url = endpoints.species
-    const speciesMap = new Map<string, string>()
+    const speciesToPeopleMap = new Map<string, string>()
 
     while (url) {
       const { data } = await axios.get(url)
@@ -55,19 +53,26 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         const speciesUrl = species.url
         // Loop through the array of people URLs and map them to their species
         species.people.forEach((personUrl: string) => {
-          speciesMap.set(personUrl, speciesUrl)
+          speciesToPeopleMap.set(personUrl, speciesUrl)
         })
       })
       url = data.next
     }
 
-    setPeopleSpeciesMap(speciesMap)
+    setPeopleSpeciesMap(speciesToPeopleMap)
   }
 
   useEffect(() => {
-    // Fetch all resources and create a combined map
+    // Fetch all resources and create separate maps for each resource type
     const fetchAllResources = async () => {
-      const allMaps = await Promise.all([
+      const [
+        fetchedFilms,
+        fetchedPeople,
+        fetchedVehicles,
+        fetchedPlanets,
+        fetchedStarships,
+        fetchedSpecies,
+      ] = await Promise.all([
         fetchAllRecords(endpoints.films),
         fetchAllRecords(endpoints.people),
         fetchAllRecords(endpoints.vehicles),
@@ -76,15 +81,15 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         fetchAllRecords(endpoints.species),
       ])
 
-      // Merge all maps into a single map
-      const combinedMap = new Map<string, string>()
-      allMaps.forEach((map) => {
-        map.forEach((value, key) => {
-          combinedMap.set(key, value)
-        })
-      })
+      // Set the state for each resource type
+      setFilmsMap(fetchedFilms)
+      setPeopleMap(fetchedPeople)
+      setVehiclesMap(fetchedVehicles)
+      setPlanetsMap(fetchedPlanets)
+      setStarshipsMap(fetchedStarships)
+      setSpeciesMap(fetchedSpecies)
 
-      setResourceMap(combinedMap)
+      // Fetch species and map people to their species
       await fetchSpeciesAndMapPeople()
     }
 
@@ -92,7 +97,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   }, [])
 
   return (
-    <AppContext.Provider value={{ resourceMap, peopleSpeciesMap }}>
+    <AppContext.Provider value={{ peopleMap, filmsMap, vehiclesMap, planetsMap, starshipsMap, speciesMap, peopleSpeciesMap }}>
       {children}
     </AppContext.Provider>
   )

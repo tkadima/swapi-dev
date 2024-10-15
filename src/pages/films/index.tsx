@@ -3,6 +3,7 @@ import { filmEndpoint } from '@/app/endpoints'
 import { filmColumnNames } from '@/app/components/columns'
 import { fetcher, setNameIdPair } from '@/app/helpers'
 import { Film } from '@/app/types'
+import { useAppContext } from '@/app/components/AppContext'
 
 export const getServerSideProps = async () => {
   const response = await fetcher(filmEndpoint)
@@ -36,6 +37,13 @@ type FilmsPageProps = {
 }
 
 const FilmsPage = ({ initialData }: FilmsPageProps) => {
+  const { peopleMap, vehiclesMap, planetsMap, starshipsMap } = useAppContext();
+  const resourceMap = new Map<string, string>([
+    ...peopleMap,
+    ...vehiclesMap,
+    ...planetsMap,
+    ...starshipsMap,
+  ]); 
   return (
       <TablePage
         title="films"
@@ -43,6 +51,7 @@ const FilmsPage = ({ initialData }: FilmsPageProps) => {
         initialData={initialData}
         initialNextPage={null}
         transformData={transformFilms}
+        resourceMap={resourceMap}
       />
   )
 }

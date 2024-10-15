@@ -1,3 +1,4 @@
+import { useAppContext } from '@/app/components/AppContext'
 import TablePage from '@/app/components/TablePage'
 import { starshipColumnNames } from '@/app/components/columns'
 import { starshipEndpoint } from '@/app/endpoints'
@@ -37,12 +38,15 @@ type StarshipProps = {
 }
 
 const StarshipPage = ({ intialStarships, initialNextPage }: StarshipProps) => {
+  const { peopleMap, filmsMap } = useAppContext()
+
   return (
     <TablePage
       title="starships"
       columns={starshipColumnNames}
       initialData={intialStarships}
       initialNextPage={initialNextPage}
+      resourceMap={new Map([...peopleMap, ...filmsMap])}
       transformData={transformStarships}
     />
   )
