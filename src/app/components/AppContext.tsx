@@ -25,72 +25,61 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [speciesMap, setSpeciesMap] = useState<Map<string, string>>(new Map())
   const [peopleSpeciesMap, setPeopleSpeciesMap] = useState<Map<string, string>>(new Map())
 
-  // Function to fetch all records from a given SWAPI endpoint and return a map
-  const fetchAllRecords = async (endpoint: string) => {
+  // Function to fetch one page of records and return the results and the next URL
+  const fetchPage = async (url: string) => {
+    const { data } = await axios.get(url)
+    return {
+      results: data.results,
+      next: data.next,
+    }
+  }
+
+  // Function to fetch and update the map for a specific resource
+  const fetchResource = async (endpoint: string, setMap: React.Dispatch<React.SetStateAction<Map<string, string>>>) => {
     let url = endpoint
-    const map = new Map<string, string>()
+    let map = new Map<string, string>()
 
     while (url) {
-      const { data } = await axios.get(url)
-      data.results.forEach((item: any) => {
-        // Assuming 'name' or 'title' contains the display name
+      const { results, next } = await fetchPage(url)
+      results.forEach((item: any) => {
         const name = item.name || item.title
         map.set(item.url, name)
       })
-      url = data.next
+      setMap(new Map(map)) // Update the state with the current data
+      url = next // Update the URL to the next page
     }
-    return map
   }
 
-  // Function to fetch all species and create a map of people to species
+  // Function to fetch all species and map people to species
   const fetchSpeciesAndMapPeople = async () => {
     let url = endpoints.species
     const speciesToPeopleMap = new Map<string, string>()
 
     while (url) {
-      const { data } = await axios.get(url)
-      data.results.forEach((species: any) => {
+      const { results, next } = await fetchPage(url)
+      results.forEach((species: any) => {
         const speciesUrl = species.url
-        // Loop through the array of people URLs and map them to their species
         species.people.forEach((personUrl: string) => {
           speciesToPeopleMap.set(personUrl, speciesUrl)
         })
       })
-      url = data.next
+      setPeopleSpeciesMap(new Map(speciesToPeopleMap)) 
+      url = next
     }
-
-    setPeopleSpeciesMap(speciesToPeopleMap)
   }
 
   useEffect(() => {
-    // Fetch all resources and create separate maps for each resource type
-    const fetchAllResources = async () => {
-      const [
-        fetchedFilms,
-        fetchedPeople,
-        fetchedVehicles,
-        fetchedPlanets,
-        fetchedStarships,
-        fetchedSpecies,
-      ] = await Promise.all([
-        fetchAllRecords(endpoints.films),
-        fetchAllRecords(endpoints.people),
-        fetchAllRecords(endpoints.vehicles),
-        fetchAllRecords(endpoints.planets),
-        fetchAllRecords(endpoints.starships),
-        fetchAllRecords(endpoints.species),
-      ])
-
-      // Set the state for each resource type
-      setFilmsMap(fetchedFilms)
-      setPeopleMap(fetchedPeople)
-      setVehiclesMap(fetchedVehicles)
-      setPlanetsMap(fetchedPlanets)
-      setStarshipsMap(fetchedStarships)
-      setSpeciesMap(fetchedSpecies)
+    // Fetch the first page for each resource, then continue fetching if more pages are available
+    const fetchAllResources = () => {
+      fetchResource(endpoints.films, setFilmsMap)
+      fetchResource(endpoints.people, setPeopleMap)
+      fetchResource(endpoints.vehicles, setVehiclesMap)
+      fetchResource(endpoints.planets, setPlanetsMap)
+      fetchResource(endpoints.starships, setStarshipsMap)
+      fetchResource(endpoints.species, setSpeciesMap)
 
       // Fetch species and map people to their species
-      await fetchSpeciesAndMapPeople()
+      fetchSpeciesAndMapPeople()
     }
 
     fetchAllResources()
