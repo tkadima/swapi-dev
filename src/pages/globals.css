@@ -82,7 +82,7 @@ main {
     Arial,
     sans-serif;
   font-size: 0.7em;
-  width: 250px;
+  width: 150px;
 }
 
 .detail-value {
@@ -98,5 +98,4 @@ main {
   grid-template-rows: repeat(5, auto);
   grid-auto-flow: column;
   padding: 0;
-  gap: 10px;
 }

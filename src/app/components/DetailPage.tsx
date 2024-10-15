@@ -63,7 +63,6 @@ const DetailPage = ({
   }
 
   return (
-    <main>
       <div className="detail-container">
         <img
           className="detail-image"
@@ -87,7 +86,6 @@ const DetailPage = ({
           )}
         </div>
       </div>
-    </main>
   )
 }
 export default DetailPage
