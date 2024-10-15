@@ -79,6 +79,28 @@ const theme = createTheme({
         },
       },
     },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          fontFamily: `'Orbitron', Arial, sans-serif`,
+          fontSize: '1rem',
+          fontWeight: 700,
+          color: '#b0c4de',
+          '&:hover': {
+            backgroundColor: '#ffd700',
+            color: '#000000',
+          },
+          '&.Mui-selected': {
+            backgroundColor: '#ff4500',
+            color: '#ffffff',
+            '&:hover': {
+              backgroundColor: '#ff4500',
+              color: '#ffffff',
+            },
+          },
+        },
+      },
+    },
     MuiTableContainer: {
       styleOverrides: {
         root: {
