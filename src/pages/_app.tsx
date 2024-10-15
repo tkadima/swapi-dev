@@ -21,7 +21,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <AppProvider>
           <CssBaseline />
           <AppNavBar activePage={router.pathname} />
-          <Component {...pageProps} />
+          <main>
+            <Component {...pageProps} />
+          </main>
         </AppProvider>
       </ThemeProvider>
     </>

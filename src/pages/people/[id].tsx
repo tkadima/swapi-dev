@@ -16,14 +16,15 @@ const PeopleDetailPage = () => {
     error,
   } = useSWR(`${peopleEndpoint}/${id}`, fetcher)
 
-  const { planetsMap, speciesMap, starshipsMap, vehiclesMap, filmsMap } = useAppContext();
+  const { planetsMap, speciesMap, starshipsMap, vehiclesMap, filmsMap } =
+    useAppContext()
   const resourceMap = new Map<string, string>([
     ...planetsMap,
     ...speciesMap,
     ...starshipsMap,
     ...vehiclesMap,
-    ...filmsMap
-  ]);
+    ...filmsMap,
+  ])
 
   return (
     <DetailPage

@@ -52,13 +52,6 @@ export const peopleColumnNames: GridColDef[] = [
     renderCell: (params) => <ListDisplay params={params} />,
   },
   {
-    field: 'species',
-    headerName: 'Species',
-    flex: 1,
-    minWidth: 250,
-    renderCell: (params) => <ListDisplay params={params} />,
-  },
-  {
     field: 'vehicles',
     headerName: 'Vehicles',
     flex: 1,

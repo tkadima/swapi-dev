@@ -6,16 +6,14 @@ import React, {
   useState,
 } from 'react'
 import axios from 'axios'
-
-// Define the endpoints for each resource
-const endpoints = {
-  films: 'https://swapi.dev/api/films/',
-  people: 'https://swapi.dev/api/people/',
-  vehicles: 'https://swapi.dev/api/vehicles/',
-  planets: 'https://swapi.dev/api/planets/',
-  starships: 'https://swapi.dev/api/starships/',
-  species: 'https://swapi.dev/api/species/',
-}
+import {
+  filmEndpoint,
+  peopleEndpoint,
+  planetEndpoint,
+  speciesEndpoint,
+  starshipEndpoint,
+  vehicleEndpoint,
+} from '../endpoints'
 
 // Create the context
 const AppContext = createContext<any>(null)
@@ -65,7 +63,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
   // Function to fetch all species and map people to species
   const fetchSpeciesAndMapPeople = async () => {
-    let url = endpoints.species
+    let url = speciesEndpoint
     const speciesToPeopleMap = new Map<string, string>()
 
     while (url) {
@@ -84,12 +82,12 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     // Fetch the first page for each resource, then continue fetching if more pages are available
     const fetchAllResources = () => {
-      fetchResource(endpoints.films, setFilmsMap)
-      fetchResource(endpoints.people, setPeopleMap)
-      fetchResource(endpoints.vehicles, setVehiclesMap)
-      fetchResource(endpoints.planets, setPlanetsMap)
-      fetchResource(endpoints.starships, setStarshipsMap)
-      fetchResource(endpoints.species, setSpeciesMap)
+      fetchResource(filmEndpoint, setFilmsMap)
+      fetchResource(peopleEndpoint, setPeopleMap)
+      fetchResource(vehicleEndpoint, setVehiclesMap)
+      fetchResource(planetEndpoint, setPlanetsMap)
+      fetchResource(starshipEndpoint, setStarshipsMap)
+      fetchResource(speciesEndpoint, setSpeciesMap)
 
       // Fetch species and map people to their species
       fetchSpeciesAndMapPeople()

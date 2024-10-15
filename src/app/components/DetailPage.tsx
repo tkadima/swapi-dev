@@ -29,13 +29,13 @@ const DetailPage = ({
   if (error) {
     return <div>Failed to load</div>
   }
-  if (
-    resourceType === 'characters'
-  ){
-    const species = peopleSpeciesMap.get(data.url) 
-    data.species = species; 
-  } 
-  const keys = Object.keys(data).filter((key) => !skip.includes(key) && !!data[key] && data[key].length > 0)
+  if (resourceType === 'characters') {
+    const species = peopleSpeciesMap.get(data.url)
+    data.species = species
+  }
+  const keys = Object.keys(data).filter(
+    (key) => !skip.includes(key) && !!data[key] && data[key].length > 0,
+  )
   const imageUrl = `https://starwars-visualguide.com/assets/img/${resourceType}/${id}.jpg`
 
   const displayValue = (key: string) => {
@@ -50,7 +50,7 @@ const DetailPage = ({
         />
       ))
 
-    return <div className="detail-list-value">{arr}</div>
+      return <div className="detail-list-value">{arr}</div>
     } else if (key === 'homeworld' || key === 'species') {
       return (
         <ResourceLink

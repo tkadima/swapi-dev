@@ -49,13 +49,11 @@ const TablePage = <T,>({
   if (error) return <div>Failed to load</div>
 
   return (
-    <main>
-      <TableView
-        title={title}
-        rows={transformData(data, resourceMap, peopleSpeciesMap)}
-        columns={columns}
-      />
-    </main>
+    <TableView
+      title={title}
+      rows={transformData(data, resourceMap, peopleSpeciesMap)}
+      columns={columns}
+    />
   )
 }
 

@@ -16,13 +16,8 @@ const FilmDetailPage = () => {
     error,
   } = useSWR(`${filmEndpoint}/${id}`, fetcher)
 
-  const {
-    peopleMap,
-    vehiclesMap,
-    planetsMap,
-    starshipsMap,
-    speciesMap,
-  } = useAppContext()
+  const { peopleMap, vehiclesMap, planetsMap, starshipsMap, speciesMap } =
+    useAppContext()
 
   const resourceMap = new Map<string, string>([
     ...peopleMap,
